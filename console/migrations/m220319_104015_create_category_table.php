@@ -18,8 +18,8 @@ class m220319_104015_create_category_table extends Migration
             'image' => $this->string(255),
             'jobs_count' => $this->integer(),
             'sort' => $this->integer(),
-            'created_at' => $this->dateTime(),
-            'updated_at' => $this->dateTime()
+            'created_at' => $this->integer(),
+            'updated_at' => $this->integer()
         ]);
     }
 
