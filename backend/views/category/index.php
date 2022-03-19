@@ -42,20 +42,14 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute' => 'created_at',
                 'value' => function ($item) {
-                    $date = new DateTime($item->created_at);
-                    $date->setTimezone(new DateTimeZone('Asia/Yerevan'));
-
-                    return $date->format('Y-m-d H:i:s');
+                    return date('Y-m-d H:i:s', $item->created_at);
                 },
             ],
 
             [
                 'attribute' => 'updated_at',
                 'value' => function ($item) {
-                    $date = new DateTime($item->updated_at);
-                    $date->setTimezone(new DateTimeZone('Asia/Yerevan'));
-
-                    return $date->format('Y-m-d H:i:s');
+                    return date('Y-m-d H:i:s', $item->updated_at);
                 },
             ],
 
