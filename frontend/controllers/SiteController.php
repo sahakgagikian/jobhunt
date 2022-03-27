@@ -2,6 +2,7 @@
 
 namespace frontend\controllers;
 
+use DateTimeZone;
 use frontend\models\ResendVerificationEmailForm;
 use frontend\models\VerifyEmailForm;
 use Yii;
@@ -15,6 +16,8 @@ use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
+use yii\web\Response;
+use yii\web\UploadedFile;
 
 /**
  * Site controller
@@ -148,20 +151,27 @@ class SiteController extends Controller
 
     /**
      * Signs user up.
-     *
-     * @return mixed
      */
-    public function actionSignup()
+    public function actionSignup($role): string|Response
     {
         $model = new SignupForm();
-        if ($model->load(Yii::$app->request->post()) && $model->signup()) {
-            Yii::$app->session->setFlash('success', 'Thank you for registration. Please check your inbox for verification email.');
-            return $this->goHome();
+        $timezoneList = DateTimeZone::listIdentifiers();
+
+        if ($model->load(Yii::$app->request->post())) {
+            $model->avatar = UploadedFile::getInstance($model, 'avatar');
+
+            if (!is_null($model->avatar)) {
+                $model->upload();
+            }
+
+            if ($model->signup($role)) {
+                Yii::$app->session->setFlash('success', 'Thank you for registration. Please check your inbox for verification email.');
+
+                return $this->goHome();
+            }
         }
 
-        return $this->render('signup', [
-            'model' => $model,
-        ]);
+        return $this->render('signup', compact('model', 'timezoneList', 'role'));
     }
 
     /**
@@ -218,7 +228,7 @@ class SiteController extends Controller
      *
      * @param string $token
      * @throws BadRequestHttpException
-     * @return yii\web\Response
+     * @return Response
      */
     public function actionVerifyEmail($token)
     {

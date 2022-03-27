@@ -4,6 +4,7 @@
 
 /* @var $content string */
 
+use common\models\User;
 use frontend\assets\Asset;
 use yii\helpers\Url;
 use yii\web\View;
@@ -132,9 +133,9 @@ Asset::register($this);
                                     </a>
                                     <ul class="dropdown-menu">
                                         <li><a class="dropdown-item" id="candidate-register"
-                                               href="<?= Url::to(['register/candidate-register']) ?>">Candidate</a></li>
+                                               href="<?= Url::to(['site/signup?role=' . User::ROLE_CANDIDATE]) ?>">Candidate</a></li>
                                         <li><a class="dropdown-item" id="employer-register"
-                                               href="<?= Url::to(['register/employer-register']) ?>">Employer</a>
+                                               href="<?= Url::to(['site/signup?role=' . User::ROLE_COMPANY]) ?>">Company</a>
                                         </li>
                                     </ul>
                                 </li>
