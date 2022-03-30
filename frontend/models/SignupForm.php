@@ -7,25 +7,26 @@ use frontend\validators\UsernameValidator;
 use Yii;
 use yii\base\Model;
 use common\models\User;
-use yii\web\UploadedFile;
 
 /**
  * Signup form
  */
 class SignupForm extends Model
 {
-    public $username;
-    public $email;
-    public $password;
-    public $role;
-    public $avatar;
-    public $timezone;
+    public string $username;
+    public string $email;
+    public string $password;
+    public int $role;
+    public string $avatar;
+    public string $timezone;
 
+    const SCENARIO_CANDIDATE = 'candidate';
+    const SCENARIO_COMPANY = 'company';
 
     /**
      * {@inheritdoc}
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             ['username', 'trim'],
@@ -48,19 +49,17 @@ class SignupForm extends Model
             ['timezone', 'string'],
             ['timezone', 'required'],
 
+            [['avatar'], 'required', 'on' => self::SCENARIO_COMPANY],
             [['avatar'], 'image', 'skipOnEmpty' => true],
-
-            /*[
-                'avatar',
-                'required',
-                'when' => function ($model) {
-                    return $model->role == 3;
-                },
-                'whenClient' => "function (attribute, value) {
-                    return $('#signupform-avatar').data('required') == '1';
-                }"
-            ]*/
         ];
+    }
+
+    public function scenarios(): array
+    {
+        $scenarios = parent::scenarios();
+        $scenarios['default'] = $scenarios['candidate'] = ['username', 'email', 'password', 'role', 'timezone'];
+
+        return $scenarios;
     }
 
     public function getAvatarPath(): string

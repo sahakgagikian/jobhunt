@@ -2,6 +2,7 @@
 
 namespace frontend\controllers;
 
+use common\models\User;
 use DateTimeZone;
 use frontend\models\ResendVerificationEmailForm;
 use frontend\models\VerifyEmailForm;
@@ -149,12 +150,10 @@ class SiteController extends Controller
         return $this->render('about');
     }
 
-    /**
-     * Signs user up.
-     */
     public function actionSignup($role): string|Response
     {
         $model = new SignupForm();
+        $model->scenario = $role == User::ROLE_CANDIDATE ? SignupForm::SCENARIO_CANDIDATE : SignupForm::SCENARIO_COMPANY;
         $timezoneList = DateTimeZone::listIdentifiers();
 
         if ($model->load(Yii::$app->request->post())) {
