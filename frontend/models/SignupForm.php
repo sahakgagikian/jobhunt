@@ -13,15 +13,16 @@ use common\models\User;
  */
 class SignupForm extends Model
 {
-    public string $username;
-    public string $email;
-    public string $password;
-    public int $role;
-    public string $avatar;
-    public string $timezone;
+    public string $username = '';
+    public string $email = '';
+    public string $password = '';
+    public string $timezone = '';
+    public mixed $avatar = null;
 
     const SCENARIO_CANDIDATE = 'candidate';
     const SCENARIO_COMPANY = 'company';
+
+    public function __construct(public int $role) {}
 
     /**
      * {@inheritdoc}
@@ -44,8 +45,6 @@ class SignupForm extends Model
             ['password', 'required'],
             ['password', 'string', 'min' => Yii::$app->params['user.passwordMinLength']],
 
-            ['role', 'integer'],
-
             ['timezone', 'string'],
             ['timezone', 'required'],
 
@@ -57,7 +56,7 @@ class SignupForm extends Model
     public function scenarios(): array
     {
         $scenarios = parent::scenarios();
-        $scenarios['default'] = $scenarios['candidate'] = ['username', 'email', 'password', 'role', 'timezone'];
+        $scenarios['default'] = $scenarios['candidate'] = ['username', 'email', 'password', 'timezone'];
 
         return $scenarios;
     }
@@ -75,9 +74,9 @@ class SignupForm extends Model
     public function upload(): bool
     {
         if ($this->validate()) {
-            $path = 'images/' . uniqid('avatar') . '.' . $this->avatar->extension;
-            $this->avatar->saveAs('@frontend/web/' . $path);
-            $this->avatar = $path;
+            $avatarName = uniqid('avatar') . '.' . $this->avatar->extension;
+            $this->avatar->saveAs($this->getAvatarPath() . $avatarName);
+            $this->avatar = $avatarName;
             
             return true;
         } else {

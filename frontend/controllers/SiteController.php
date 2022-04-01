@@ -152,7 +152,7 @@ class SiteController extends Controller
 
     public function actionSignup($role): string|Response
     {
-        $model = new SignupForm();
+        $model = new SignupForm($role);
         $model->scenario = $role == User::ROLE_CANDIDATE ? SignupForm::SCENARIO_CANDIDATE : SignupForm::SCENARIO_COMPANY;
         $timezoneList = DateTimeZone::listIdentifiers();
 
