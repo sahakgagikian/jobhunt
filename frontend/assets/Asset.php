@@ -15,7 +15,8 @@ class Asset extends AppAsset
         'css/slicknav.min.css',
         'css/animate.css',
         'css/main.css',
-        'css/responsive.css'
+        'css/responsive.css',
+        'css/custom.css'
     ];
     public $js = [
         'js/popper.min.js',
@@ -29,6 +30,7 @@ class Asset extends AppAsset
         'js/contact-form-script.js',
         'js/main.js',
         'js/addons.js',
+        'js/custom.js',
         'js/prevent-refresh-on-validation-fail.js',
     ];
 }

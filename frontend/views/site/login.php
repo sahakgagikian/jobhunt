@@ -1,41 +1,86 @@
 <?php
 
-/** @var yii\web\View $this */
-/** @var yii\bootstrap4\ActiveForm $form */
-/** @var \common\models\LoginForm $model */
+/* @var $this yii\web\View */
+/* @var $model LoginForm */
 
-use yii\bootstrap4\Html;
-use yii\bootstrap4\ActiveForm;
+use common\models\LoginForm;
+use common\models\User;
+use yii\helpers\Url;
+use yii\widgets\ActiveForm;
 
-$this->title = 'Login';
-$this->params['breadcrumbs'][] = $this->title;
+$this->title = 'JobHunt - Log in';
 ?>
-<div class="site-login">
-    <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>Please fill out the following fields to login:</p>
-
-    <div class="row">
-        <div class="col-lg-5">
-            <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
-
-                <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
-
-                <?= $form->field($model, 'password')->passwordInput() ?>
-
-                <?= $form->field($model, 'rememberMe')->checkbox() ?>
-
-                <div style="color:#999;margin:1em 0">
-                    If you forgot your password you can <?= Html::a('reset it', ['site/request-password-reset']) ?>.
-                    <br>
-                    Need new verification email? <?= Html::a('Resend', ['site/resend-verification-email']) ?>
+<!-- Page Header Start -->
+<div class="page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="inner-header">
+                    <h3>Login</h3>
                 </div>
-
-                <div class="form-group">
-                    <?= Html::submitButton('Login', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
-                </div>
-
-            <?php ActiveForm::end(); ?>
+            </div>
         </div>
     </div>
 </div>
+<!-- Page Header End -->
+
+<!-- Content section Start -->
+<section id="content" class="section-padding">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-5 col-md-6 col-xs-12">
+                <div class="page-login-form box">
+                    <h3>Login</h3>
+
+                    <?php $form = ActiveForm::begin([
+                        'id' => 'form-signup',
+                        'options' => [
+                            'class' => 'login-form'
+                        ],
+                    ]); ?>
+                    <div class="form-group">
+                        <div class="input-icon">
+                            <i class="lni-user"></i>
+                            <?= $form
+                                ->field($model, 'username')
+                                ->textInput([
+                                    'id' => 'sender-username',
+                                    'class' => 'form-control',
+                                    'placeholder' => 'Username',
+                                    'autofocus' => true])
+                                ->label(false) ?>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-icon">
+                            <i class="lni-lock"></i>
+                            <?= $form
+                                ->field($model, 'password')
+                                ->passwordInput([
+                                    'class' => 'form-control',
+                                    'placeholder' => 'Password',
+                                    'autofocus' => true])
+                                ->label(false) ?>
+                        </div>
+                    </div>
+                    <div class="form-group form-check">
+                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                        <label class="form-check-label" for="exampleCheck1">Keep Me Signed In</label>
+                    </div>
+                    <button class="btn btn-common log-btn">Submit</button>
+                    <?php ActiveForm::end(); ?>
+
+                    <ul class="form-links">
+                        <li class="text-center">
+                            Don't have an account? Sign up as<br>
+                            <a href="<?= Url::to(['site/signup?role=' . User::ROLE_CANDIDATE]) ?>">Candidate</a> |
+                            <a href="<?= Url::to(['site/signup?role=' . User::ROLE_COMPANY]) ?>">Company</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Content section End -->

@@ -4,6 +4,7 @@
 
 /* @var $content string */
 
+use common\models\User;
 use frontend\assets\Asset;
 use yii\helpers\Url;
 use yii\web\View;
@@ -122,7 +123,7 @@ Asset::register($this);
                             </li>
                             <?php if (Yii::$app->user->isGuest): ?>
                                 <li class="nav-item" id="login">
-                                    <a class="nav-link" href="<?= Url::to(['log/login']) ?>">
+                                    <a class="nav-link" href="<?= Url::to(['site/login']) ?>">
                                         Log in
                                     </a>
                                 </li>
@@ -132,16 +133,16 @@ Asset::register($this);
                                     </a>
                                     <ul class="dropdown-menu">
                                         <li><a class="dropdown-item" id="candidate-register"
-                                               href="<?= Url::to(['register/candidate-register']) ?>">Candidate</a></li>
+                                               href="<?= Url::to(['site/signup?role=' . User::ROLE_CANDIDATE]) ?>">Candidate</a></li>
                                         <li><a class="dropdown-item" id="employer-register"
-                                               href="<?= Url::to(['register/employer-register']) ?>">Employer</a>
+                                               href="<?= Url::to(['site/signup?role=' . User::ROLE_COMPANY]) ?>">Company</a>
                                         </li>
                                     </ul>
                                 </li>
                             <?php else: ?>
                                 <li class="nav-item" id="logout">
-                                    <a class="nav-link" href="<?= Url::to(['log/logout']) ?>" data-method="post">
-                                        Log out
+                                    <a class="nav-link" href="<?= Url::to(['site/logout']) ?>" data-method="post">
+                                        Log out (<?= Yii::$app->user->identity->username ?>)
                                     </a>
                                 </li>
                             <?php endif; ?>

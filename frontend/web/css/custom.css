@@ -1,0 +1,14 @@
+.bi-trash, .bi-upload, .bi-folder2-open, .bi-plus-lg {
+    display: none !important;
+}
+
+.file-caption-name {
+    all: unset;
+    border-radius: 30px;
+}
+
+.btn {
+    display: flex;
+    align-items: center;
+    justify-content:center;
+}
