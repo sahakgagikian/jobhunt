@@ -2,7 +2,9 @@
 
 namespace common\models;
 
+use JetBrains\PhpStorm\ArrayShape;
 use Yii;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "category".
@@ -16,7 +18,7 @@ use Yii;
  * @property string|null $updated_at
  * @property string $imagePath
  */
-class Category extends \yii\db\ActiveRecord
+class Category extends ActiveRecord
 {
     /**
      * {@inheritdoc}
@@ -43,7 +45,7 @@ class Category extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public function attributeLabels(): array
+    #[ArrayShape(['id' => "string", 'title' => "string", 'imagePath' => "string", 'jobs_count' => "string", 'sort' => "string", 'created_at' => "string", 'updated_at' => "string"])] public function attributeLabels(): array
     {
         return [
             'id' => 'ID',

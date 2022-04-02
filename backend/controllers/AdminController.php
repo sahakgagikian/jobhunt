@@ -2,6 +2,7 @@
 
 namespace backend\controllers;
 
+use JetBrains\PhpStorm\ArrayShape;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 
@@ -13,7 +14,7 @@ class AdminController extends Controller
     /**
      * @inheritDoc
      */
-    public function behaviors()
+    #[ArrayShape(['access' => "array"])] public function behaviors(): array
     {
         return  [
             'access' => [
