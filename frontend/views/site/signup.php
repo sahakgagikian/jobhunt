@@ -114,7 +114,7 @@ $this->title = 'Register as ' . $roleName;
                             ])
                         ?>
                     </div>
-                    <p class="text-center">Already have an account?<a href="<?= Url::to(['log/login']) ?>"> Sign In</a></p>
+                    <p class="text-center">Already have an account?<a href="<?= Url::to(['site/login']) ?>"> Sign In</a></p>
                     <?php ActiveForm::end(); ?>
                 </div>
             </div>

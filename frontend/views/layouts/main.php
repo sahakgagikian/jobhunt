@@ -123,7 +123,7 @@ Asset::register($this);
                             </li>
                             <?php if (Yii::$app->user->isGuest): ?>
                                 <li class="nav-item" id="login">
-                                    <a class="nav-link" href="<?= Url::to(['log/login']) ?>">
+                                    <a class="nav-link" href="<?= Url::to(['site/login']) ?>">
                                         Log in
                                     </a>
                                 </li>
@@ -141,8 +141,8 @@ Asset::register($this);
                                 </li>
                             <?php else: ?>
                                 <li class="nav-item" id="logout">
-                                    <a class="nav-link" href="<?= Url::to(['log/logout']) ?>" data-method="post">
-                                        Log out
+                                    <a class="nav-link" href="<?= Url::to(['site/logout']) ?>" data-method="post">
+                                        Log out (<?= Yii::$app->user->identity->username ?>)
                                     </a>
                                 </li>
                             <?php endif; ?>
