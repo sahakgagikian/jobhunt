@@ -4,7 +4,6 @@ namespace backend\controllers;
 
 use common\models\Category;
 use backend\models\CategorySearch;
-use backend\controllers\AdminController;
 use yii\db\StaleObjectException;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -64,7 +63,7 @@ class CategoryController extends AdminController
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return string|Response
      */
-    public function actionCreate()
+    public function actionCreate(): Response|string
     {
         $model = new Category();
 
@@ -92,10 +91,11 @@ class CategoryController extends AdminController
     /**
      * Updates an existing Category model.
      * If update is successful, the browser will be redirected to the 'view' page.
+     * @param int $id
      * @return string|Response
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionUpdate(int $id)
+    public function actionUpdate(int $id): Response|string
     {
         $model = $this->findModel($id);
 

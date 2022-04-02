@@ -11,12 +11,12 @@ class VerifyEmailForm extends Model
     /**
      * @var string
      */
-    public $token;
+    public string $token;
 
     /**
      * @var User
      */
-    private $_user;
+    private User $_user;
 
 
     /**
@@ -43,7 +43,7 @@ class VerifyEmailForm extends Model
      *
      * @return User|null the saved model or null if saving fails
      */
-    public function verifyEmail()
+    public function verifyEmail(): ?User
     {
         $user = $this->_user;
         $user->status = User::STATUS_ACTIVE;

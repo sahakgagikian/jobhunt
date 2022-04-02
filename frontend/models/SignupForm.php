@@ -5,6 +5,7 @@ namespace frontend\models;
 use DateTimeZone;
 use frontend\validators\UsernameValidator;
 use Yii;
+use yii\base\Exception;
 use yii\base\Model;
 use common\models\User;
 
@@ -68,7 +69,7 @@ class SignupForm extends Model
 
     public function getAvatarUrl(): string
     {
-        return '/images/'. $this->avatar;
+        return '/images/' . $this->avatar;
     }
 
     public function upload(): bool
@@ -77,7 +78,7 @@ class SignupForm extends Model
             $avatarName = uniqid('avatar') . '.' . $this->avatar->extension;
             $this->avatar->saveAs($this->getAvatarPath() . $avatarName);
             $this->avatar = $avatarName;
-            
+
             return true;
         } else {
             return false;
@@ -86,13 +87,14 @@ class SignupForm extends Model
 
     /**
      * Signs user up.
+     * @throws Exception
      */
     public function signup($role): ?User
     {
         if (!$this->validate()) {
             return null;
         }
-        
+
         $postRequest = Yii::$app->request->post();
         $timezoneList = DateTimeZone::listIdentifiers();
         $selectedTimezone = $timezoneList[$postRequest['SignupForm']['timezone']];
@@ -117,10 +119,10 @@ class SignupForm extends Model
 
     /**
      * Sends confirmation email to user
-     * @param User $user user model to with email should be send
+     * @param User $user user model to with email should be sent
      * @return bool whether the email was sent
      */
-    protected function sendEmail($user)
+    protected function sendEmail(User $user): bool
     {
         return Yii::$app
             ->mailer

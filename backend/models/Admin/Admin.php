@@ -2,7 +2,9 @@
 
 namespace backend\models\Admin;
 
+use JetBrains\PhpStorm\Pure;
 use Yii;
+use yii\base\Exception;
 use yii\base\NotSupportedException;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
@@ -33,7 +35,7 @@ class Admin extends ActiveRecord implements IdentityInterface
     /**
      * {@inheritdoc}
      */
-    public static function tableName()
+    public static function tableName(): string
     {
         return '{{%user}}';
     }
@@ -41,7 +43,7 @@ class Admin extends ActiveRecord implements IdentityInterface
     /**
      * {@inheritdoc}
      */
-    public function behaviors()
+    public function behaviors(): array
     {
         return [
             TimestampBehavior::class,
@@ -51,7 +53,7 @@ class Admin extends ActiveRecord implements IdentityInterface
     /**
      * {@inheritdoc}
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             ['status', 'default', 'value' => self::STATUS_INACTIVE],
@@ -62,13 +64,14 @@ class Admin extends ActiveRecord implements IdentityInterface
     /**
      * {@inheritdoc}
      */
-    public static function findIdentity($id)
+    public static function findIdentity($id): Admin|IdentityInterface|null
     {
         return static::findOne(['id' => $id, 'status' => self::STATUS_ACTIVE]);
     }
 
     /**
      * {@inheritdoc}
+     * @throws NotSupportedException
      */
     public static function findIdentityByAccessToken($token, $type = null)
     {
@@ -79,9 +82,9 @@ class Admin extends ActiveRecord implements IdentityInterface
      * Finds user by username
      *
      * @param string $username
-     * @return static|null
+     * @return Admin|null
      */
-    public static function findByUsername($username)
+    public static function findByUsername(string $username): ?static
     {
         return static::findOne(['username' => $username, 'status' => self::STATUS_ACTIVE]);
     }
@@ -92,7 +95,7 @@ class Admin extends ActiveRecord implements IdentityInterface
      * @param string $token password reset token
      * @return static|null
      */
-    public static function findByPasswordResetToken($token)
+    public static function findByPasswordResetToken(string $token): ?static
     {
         if (!static::isPasswordResetTokenValid($token)) {
             return null;
@@ -110,7 +113,8 @@ class Admin extends ActiveRecord implements IdentityInterface
      * @param string $token verify email token
      * @return static|null
      */
-    public static function findByVerificationToken($token) {
+    public static function findByVerificationToken(string $token): ?static
+    {
         return static::findOne([
             'verification_token' => $token,
             'status' => self::STATUS_INACTIVE
@@ -123,7 +127,7 @@ class Admin extends ActiveRecord implements IdentityInterface
      * @param string $token password reset token
      * @return bool
      */
-    public static function isPasswordResetTokenValid($token)
+    public static function isPasswordResetTokenValid(string $token): bool
     {
         if (empty($token)) {
             return false;
@@ -145,7 +149,7 @@ class Admin extends ActiveRecord implements IdentityInterface
     /**
      * {@inheritdoc}
      */
-    public function getAuthKey()
+    public function getAuthKey(): ?string
     {
         return $this->auth_key;
     }
@@ -153,7 +157,7 @@ class Admin extends ActiveRecord implements IdentityInterface
     /**
      * {@inheritdoc}
      */
-    public function validateAuthKey($authKey)
+    #[Pure] public function validateAuthKey($authKey): ?bool
     {
         return $this->getAuthKey() === $authKey;
     }
@@ -164,7 +168,7 @@ class Admin extends ActiveRecord implements IdentityInterface
      * @param string $password password to validate
      * @return bool if password provided is valid for current user
      */
-    public function validatePassword($password)
+    public function validatePassword(string $password): bool
     {
         return Yii::$app->security->validatePassword($password, $this->password_hash);
     }
@@ -173,14 +177,16 @@ class Admin extends ActiveRecord implements IdentityInterface
      * Generates password hash from password and sets it to the model
      *
      * @param string $password
+     * @throws Exception
      */
-    public function setPassword($password)
+    public function setPassword(string $password)
     {
         $this->password_hash = Yii::$app->security->generatePasswordHash($password);
     }
 
     /**
      * Generates "remember me" authentication key
+     * @throws Exception
      */
     public function generateAuthKey()
     {
@@ -189,6 +195,7 @@ class Admin extends ActiveRecord implements IdentityInterface
 
     /**
      * Generates new password reset token
+     * @throws Exception
      */
     public function generatePasswordResetToken()
     {
@@ -197,6 +204,7 @@ class Admin extends ActiveRecord implements IdentityInterface
 
     /**
      * Generates new token for email verification
+     * @throws Exception
      */
     public function generateEmailVerificationToken()
     {
