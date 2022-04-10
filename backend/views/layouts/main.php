@@ -35,7 +35,7 @@ AppAsset::register($this);
         ],
     ]);
     $menuItems = [
-        ['label' => 'Home', 'url' => ['/']],
+        ['label' => 'Users', 'url' => ['/user']],
         ['label' => 'Categories', 'url' => ['/category']],
         ['label' => 'Jobs', 'url' => ['/job']],
         ['label' => 'Candidates', 'url' => ['/candidate']],
@@ -62,7 +62,7 @@ AppAsset::register($this);
 </header>
 
 <main role="main" class="flex-shrink-0">
-    <div class="container">
+    <div class="container-fluid">
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
