@@ -21,7 +21,6 @@ class Asset extends AppAsset
     public $js = [
         'js/popper.min.js',
         'js/bootstrap.min.js',
-        'js/color-switcher.js',
         'js/owl.carousel.min.js',
         'js/jquery.slicknav.js',
         'js/jquery.counterup.min.js',

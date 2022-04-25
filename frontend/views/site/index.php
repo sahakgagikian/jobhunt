@@ -4,21 +4,21 @@
 
 use yii\helpers\Url;
 
-$this->title = 'Home';
+$this->title = 'JobHunt | Պորտալ աշխատանք որսալու համար';
 ?>
 <!-- Find Job Section Start -->
 <div class="container" style="margin-top: 150px">
     <div class="row space-100">
         <div class="col-lg-7 col-md-12 col-xs-12">
             <div class="contents">
-                <h2 class="head-title">Find the  <br> job that fits your life</h2>
-                <p>Aliquam vestibulum cursus felis. In iaculis iaculis sapien ac condimentum. Vestibulum congue posuere lacus, id tincidunt nisi porta sit amet. Suspendisse et sapien varius, pellentesque dui non.</p>
+                <h2 class="head-title">Գտիր քեզ համապատասխանող աշխատանք</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto asperiores autem dolorum id laudantium quod rerum sequi veniam? Numquam rerum, vel! Consequatur eos id illo labore perspiciatis praesentium voluptate voluptatibus!</p>
                 <div class="job-search-form">
                     <form>
                         <div class="row">
                             <div class="col-lg-5 col-md-5 col-xs-12">
                                 <div class="form-group">
-                                    <input class="form-control" type="text" placeholder="Job Title or Company Name">
+                                    <input class="form-control" type="text" placeholder="Աշխատանք կամ ընկերություն">
                                 </div>
                             </div>
                             <div class="col-lg-5 col-md-5 col-xs-12">
@@ -26,7 +26,7 @@ $this->title = 'Home';
                                     <div class="search-category-container">
                                         <label class="styled-select">
                                             <select>
-                                                <option value="none">Locations</option>
+                                                <option value="none">Գտնվելու վայրը</option>
                                                 <option value="none">New York</option>
                                                 <option value="none">California</option>
                                                 <option value="none">Washington</option>
@@ -60,8 +60,8 @@ $this->title = 'Home';
 <section class="category section bg-gray">
     <div class="container">
         <div class="section-header">
-            <h2 class="section-title">Browse Categories</h2>
-            <p>Most popular categories of portal, sorted by popularity</p>
+            <h2 class="section-title">Որոնել ըստ կատեգորիաների</h2>
+            <p>Պորտալի ամենատարածված կատեգորիաներն ըստ տարածվածության</p>
         </div>
         <div class="row">
             <div class="col-lg-3 col-md-6 col-xs-12 f-category">
@@ -69,8 +69,8 @@ $this->title = 'Home';
                     <div class="icon bg-color-1">
                         <i class="lni-home"></i>
                     </div>
-                    <h3>Finance</h3>
-                    <p>(4286 jobs)</p>
+                    <h3>Ֆինանսներ</h3>
+                    <p>(4286 աշխատանք)</p>
                 </a>
             </div>
             <div class="col-lg-3 col-md-6 col-xs-12 f-category">
@@ -78,8 +78,8 @@ $this->title = 'Home';
                     <div class="icon bg-color-2">
                         <i class="lni-world"></i>
                     </div>
-                    <h3>Sale/Marketing</h3>
-                    <p>(2000 jobs)</p>
+                    <h3>Վաճառք/Մարքեթինգ</h3>
+                    <p>(2000 աշխատանք)</p>
                 </a>
             </div>
             <div class="col-lg-3 col-md-6 col-xs-12 f-category">
@@ -87,8 +87,8 @@ $this->title = 'Home';
                     <div class="icon bg-color-3">
                         <i class="lni-book"></i>
                     </div>
-                    <h3>Education/Training</h3>
-                    <p>(1450 jobs)</p>
+                    <h3>Կրթություն/Թրեյնինգ</h3>
+                    <p>(1450 աշխատանք)</p>
                 </a>
             </div>
             <div class="col-lg-3 col-md-6 col-xs-12 f-category">
@@ -97,7 +97,7 @@ $this->title = 'Home';
                         <i class="lni-display"></i>
                     </div>
                     <h3>Technologies</h3>
-                    <p>(5100 jobs)</p>
+                    <p>(5100 աշխատանք)</p>
                 </a>
             </div>
             <div class="col-lg-3 col-md-6 col-xs-12 f-category">
@@ -106,7 +106,7 @@ $this->title = 'Home';
                         <i class="lni-brush"></i>
                     </div>
                     <h3>Art/Design</h3>
-                    <p>(5079 jobs)</p>
+                    <p>(5079 աշխատանք)</p>
                 </a>
             </div>
             <div class="col-lg-3 col-md-6 col-xs-12 f-category">
@@ -114,8 +114,8 @@ $this->title = 'Home';
                     <div class="icon bg-color-6">
                         <i class="lni-heart"></i>
                     </div>
-                    <h3>Healthcare</h3>
-                    <p>(3235 jobs)</p>
+                    <h3>Առողջապահություն</h3>
+                    <p>(3235 աշխատանք)</p>
                 </a>
             </div>
             <div class="col-lg-3 col-md-6 col-xs-12 f-category">
@@ -123,8 +123,8 @@ $this->title = 'Home';
                     <div class="icon bg-color-7">
                         <i class="lni-funnel"></i>
                     </div>
-                    <h3>Science</h3>
-                    <p>(1800 jobs)</p>
+                    <h3>Գիտություն</h3>
+                    <p>(1800 աշխատանք)</p>
                 </a>
             </div>
             <div class="col-lg-3 col-md-6 col-xs-12 f-category">
@@ -132,8 +132,8 @@ $this->title = 'Home';
                     <div class="icon bg-color-8">
                         <i class="lni-cup"></i>
                     </div>
-                    <h3>Food Services</h3>
-                    <p>(4286 jobs)</p>
+                    <h3>Սնունդ</h3>
+                    <p>(4286 աշխատանք)</p>
                 </a>
             </div>
         </div>

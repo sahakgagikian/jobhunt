@@ -130,9 +130,9 @@ class SiteController extends Controller
         $model = new ContactForm();
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             if ($model->sendEmail(Yii::$app->params['adminEmail'])) {
-                Yii::$app->session->setFlash('success', 'Thank you for contacting us. We will respond to you as soon as possible.');
+                Yii::$app->session->setFlash('success', 'Շնորհակալություն մեզ հետ կապ հաստատելու համար։ Մենք կպատասխանենք ձեզ  հնարավորինս շուտ։');
             } else {
-                Yii::$app->session->setFlash('error', 'There was an error sending your message.');
+                Yii::$app->session->setFlash('error', 'Ձեր նամակն ուղարկելիս սխալ է տեղի ունեցել։');
             }
 
             return $this->refresh();
@@ -170,7 +170,7 @@ class SiteController extends Controller
             }
 
             if ($model->signup($role)) {
-                Yii::$app->session->setFlash('success', 'Thank you for registration. Please check your inbox for verification email.');
+                Yii::$app->session->setFlash('success', 'Շնորհակալություն գրանցվելու համար։ Խնդրում ենք ստուգել Ձեր էլ․ փոստը հաստատման համար։');
 
                 return $this->goHome();
             }
@@ -189,12 +189,12 @@ class SiteController extends Controller
         $model = new PasswordResetRequestForm();
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             if ($model->sendEmail()) {
-                Yii::$app->session->setFlash('success', 'Check your email for further instructions.');
+                Yii::$app->session->setFlash('success', 'Ստուգեք Ձեր էլ․ փոստը հետագա ցուցումների համար։');
 
                 return $this->goHome();
             }
 
-            Yii::$app->session->setFlash('error', 'Sorry, we are unable to reset password for the provided email address.');
+            Yii::$app->session->setFlash('error', 'Ցավոք մենք չենք կարող վերականգնել ծածկագիրը տվյալ էլ․ փոստի համար։');
         }
 
         return $this->render('requestPasswordResetToken', [
@@ -218,7 +218,7 @@ class SiteController extends Controller
         }
 
         if ($model->load(Yii::$app->request->post()) && $model->validate() && $model->resetPassword()) {
-            Yii::$app->session->setFlash('success', 'New password saved.');
+            Yii::$app->session->setFlash('success', 'Նոր ծածկագիրը պահպանված է։');
 
             return $this->goHome();
         }
@@ -243,11 +243,11 @@ class SiteController extends Controller
             throw new BadRequestHttpException($e->getMessage());
         }
         if (($user = $model->verifyEmail()) && Yii::$app->user->login($user)) {
-            Yii::$app->session->setFlash('success', 'Your email has been confirmed!');
+            Yii::$app->session->setFlash('success', 'Ձեր էլ․ փոստը հաստատված է։');
             return $this->goHome();
         }
 
-        Yii::$app->session->setFlash('error', 'Sorry, we are unable to verify your account with provided token.');
+        Yii::$app->session->setFlash('error', 'Ցավոք մենք չենք կարող հաստատել Ձեր հաշիվը տվյալ տոկենով։');
         return $this->goHome();
     }
 
@@ -261,10 +261,10 @@ class SiteController extends Controller
         $model = new ResendVerificationEmailForm();
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             if ($model->sendEmail()) {
-                Yii::$app->session->setFlash('success', 'Check your email for further instructions.');
+                Yii::$app->session->setFlash('success', 'Ստուգեք Ձեր էլ․ փոստը հետագա ցուցումների համար։');
                 return $this->goHome();
             }
-            Yii::$app->session->setFlash('error', 'Sorry, we are unable to resend verification email for the provided email address.');
+            Yii::$app->session->setFlash('error', 'Ցավոք մենք չենք կարող ուղարկել հաստատման նամակ տվյալ էլ․ փոստին։');
         }
 
         return $this->render('resendVerificationEmail', [
