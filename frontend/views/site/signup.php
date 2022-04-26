@@ -14,8 +14,8 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\ActiveForm;
 
-$roleName = $role === User::ROLE_CANDIDATE ? 'candidate' : 'company';
-$this->title = 'Register as ' . $roleName;
+$roleName = $role == User::ROLE_CANDIDATE ? 'թեկնածու' : 'գործատու';
+$this->title = 'JobHunt | Գրանցվել որպես ' . $roleName;
 ?>
 
 <!-- Page Header Start -->
@@ -24,7 +24,7 @@ $this->title = 'Register as ' . $roleName;
         <div class="row">
             <div class="col-lg-12">
                 <div class="inner-header">
-                    <h3>Create Your account</h3>
+                    <h3>Ստեղծեք Ձեր հաշիվը</h3>
                 </div>
             </div>
         </div>
@@ -38,7 +38,7 @@ $this->title = 'Register as ' . $roleName;
         <div class="row justify-content-center">
             <div class="col-lg-8 col-md-6 col-xs-12">
                 <div class="page-login-form box">
-                    <h3>Create Your account</h3>
+                    <h3>Ստեղծեք Ձեր հաշիվը</h3>
 
                     <?php $form = ActiveForm::begin([
                         'id' => 'form-signup',
@@ -52,7 +52,7 @@ $this->title = 'Register as ' . $roleName;
                             <i class="lni-user"></i>
                             <?= $form->field($model, 'username')->textInput([
                                 'class' => 'form-control',
-                                'placeholder' => 'Username'])
+                                'placeholder' => 'Մուտքանուն'])
                                 ->label(false) ?>
                         </div>
                     </div>
@@ -61,7 +61,7 @@ $this->title = 'Register as ' . $roleName;
                             <i class="lni-envelope"></i>
                             <?= $form->field($model, 'email')->textInput([
                                 'class' => 'form-control',
-                                'placeholder' => 'Email Address'])
+                                'placeholder' => 'Էլ․ փոստ'])
                                 ->label(false) ?>
                         </div>
                     </div>
@@ -77,9 +77,15 @@ $this->title = 'Register as ' . $roleName;
                                         $model->avatar ? $model->getAvatarUrl() : null
                                     ],
                                     'initialPreviewAsData' => true,
-                                    'dropZoneTitle' => 'Drag & drop your avatar here',
+                                    'language' => substr(\Yii::$app->language, 0, 2),
+                                    'dropZoneTitle' => Yii::t('app', 'Քաշեք և բաց թողեք ձեր լուսանկարն այստեղ...'),
+                                    'browseLabel' => Yii::t('app', 'Ընտրել'),
+                                    'removeLabel' => 'Ջնջել',
+                                    'uploadLabel' => 'Վերբեռնել',
+                                    'msgPlaceholder' => 'Ընտրել ֆայլ․․․',
+                                    'msgProcessing' => 'Մշակվում է',
                                     'showCancel' => false,
-                                    'showZoom' => false
+                                    'showZoom' => false,
                                 ]
                             ])->label(false) ?>
                         </div>
@@ -89,7 +95,7 @@ $this->title = 'Register as ' . $roleName;
                             'data' => $timezoneList,
                             'model' => $model,
                             'options' => [
-                                'placeholder' => 'Your timezone'
+                                'placeholder' => 'Ձեր ժամային գոտին'
                             ]])
                             ->label(false) ?>
                     </div>
@@ -100,21 +106,21 @@ $this->title = 'Register as ' . $roleName;
                                 ->field($model, 'password')
                                 ->passwordInput([
                                     'class' => 'form-control',
-                                    'placeholder' => 'Password'])
+                                    'placeholder' => 'Ծածկագիր'])
                                 ->label(false) ?>
                         </div>
                     </div>
                     <?= $form->errorSummary($model); ?>
                     <div class="form-group">
                         <?= Html::submitButton(
-                            'Register',
+                            'Գրանցվել',
                             [
                                 'class' => 'btn btn-common log-btn mt-3',
                                 'name' => 'signup-button'
                             ])
                         ?>
                     </div>
-                    <p class="text-center">Already have an account?<a href="<?= Url::to(['site/login']) ?>"> Sign In</a></p>
+                    <p class="text-center">Ունե՞ք հաշիվ։<a href="<?= Url::to(['site/login']) ?>"> Մուտք գործեք</a></p>
                     <?php ActiveForm::end(); ?>
                 </div>
             </div>

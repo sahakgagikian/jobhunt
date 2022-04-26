@@ -9,7 +9,7 @@ use yii\grid\GridView;
 /* @var $searchModel backend\models\UserSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Users';
+$this->title = 'Օգտատերեր';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="user-index">
@@ -29,8 +29,11 @@ $this->params['breadcrumbs'][] = $this->title;
             'email:email',
 
             [
-                'attribute' => 'avatarUrl',
+                'attribute' => 'Լուսանկար',
                 'format' => ['image', ['width' => '100', 'height' => '100']],
+                'value' => function ($item) {
+                    return $item->avatarUrl;
+                }
             ],
 
             [
@@ -52,11 +55,11 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value' => function ($item) {
                     switch ($item->role) {
                         case User::ROLE_ADMIN:
-                            return 'admin';
+                            return 'ադմին';
                         case User::ROLE_CANDIDATE:
-                            return 'candidate';
+                            return 'թեկնածու';
                         case User::ROLE_COMPANY:
-                            return 'company';
+                            return 'գործատու';
                     }
                 },
                 'filter' => Select2::widget(
@@ -64,12 +67,12 @@ $this->params['breadcrumbs'][] = $this->title;
                         'model' => $searchModel,
                         'attribute' => 'role',
                         'data' => [
-                            User::ROLE_ADMIN => 'admin',
-                            User::ROLE_CANDIDATE => 'candidate',
-                            User::ROLE_COMPANY => 'company'
+                            User::ROLE_ADMIN => 'ադմին',
+                            User::ROLE_CANDIDATE => 'թեկնածու',
+                            User::ROLE_COMPANY => 'գործատու'
                         ],
                         'options' => [
-                            'placeholder' => 'Select role...'
+                            'placeholder' => 'Ընտրել...'
                         ]
                     ]
                 ),
@@ -80,11 +83,11 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value' => function ($item) {
                     switch ($item->status) {
                         case User::STATUS_INACTIVE:
-                            return 'Inactive';
+                            return 'ոչ ակտիվ';
                         case User::STATUS_ACTIVE:
-                            return 'Active';
+                            return 'ակտիվ';
                         case User::STATUS_DELETED:
-                            return 'Deleted';
+                            return 'հեռացված';
                     }
                 },
                 'filter' => Select2::widget(
@@ -92,12 +95,12 @@ $this->params['breadcrumbs'][] = $this->title;
                         'model' => $searchModel,
                         'attribute' => 'status',
                         'data' => [
-                            User::STATUS_INACTIVE => 'Inactive',
-                            User::STATUS_ACTIVE => 'Active',
-                            User::STATUS_DELETED => 'Deleted'
+                            User::STATUS_INACTIVE => 'ոչ ակտիվ',
+                            User::STATUS_ACTIVE => 'ակտիվ',
+                            User::STATUS_DELETED => 'հեռացված'
                         ],
                         'options' => [
-                            'placeholder' => 'Select status...'
+                            'placeholder' => 'Ընտրել...'
                         ]
                     ]
                 ),

@@ -24,13 +24,20 @@ use yii\widgets\ActiveForm;
                 $model->image ? $model->getImageUrl() : null
             ],
             'initialPreviewAsData' => true,
+            'language' => substr(\Yii::$app->language, 0, 2),
+            'dropZoneTitle' => Yii::t('app', 'Քաշեք և բաց թողեք ձեր լուսանկարն այստեղ...'),
+            'browseLabel' => Yii::t('app', 'Ընտրել'),
+            'removeLabel' => 'Ջնջել',
+            'uploadLabel' => 'Վերբեռնել',
+            'msgPlaceholder' => 'Ընտրել ֆայլ․․․',
+            'msgProcessing' => 'Մշակվում է',
         ]
-    ]) ?>
+    ])->label('Լուսանկար') ?>
 
     <?= $form->field($model, 'sort')->textInput() ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('Պահպանել', ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

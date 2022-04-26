@@ -8,7 +8,7 @@ use common\models\User;
 use yii\helpers\Url;
 use yii\widgets\ActiveForm;
 
-$this->title = 'JobHunt - Log in';
+$this->title = 'JobHunt | Մուտք';
 ?>
 
 <!-- Page Header Start -->
@@ -17,7 +17,7 @@ $this->title = 'JobHunt - Log in';
         <div class="row">
             <div class="col-lg-12">
                 <div class="inner-header">
-                    <h3>Login</h3>
+                    <h3>Մուտք</h3>
                 </div>
             </div>
         </div>
@@ -31,7 +31,7 @@ $this->title = 'JobHunt - Log in';
         <div class="row justify-content-center">
             <div class="col-lg-5 col-md-6 col-xs-12">
                 <div class="page-login-form box">
-                    <h3>Login</h3>
+                    <h3>Մուտք</h3>
 
                     <?php $form = ActiveForm::begin([
                         'id' => 'form-signup',
@@ -47,7 +47,7 @@ $this->title = 'JobHunt - Log in';
                                 ->textInput([
                                     'id' => 'sender-username',
                                     'class' => 'form-control',
-                                    'placeholder' => 'Username',
+                                    'placeholder' => 'Մուտքանուն',
                                     'autofocus' => true])
                                 ->label(false) ?>
                         </div>
@@ -59,23 +59,23 @@ $this->title = 'JobHunt - Log in';
                                 ->field($model, 'password')
                                 ->passwordInput([
                                     'class' => 'form-control',
-                                    'placeholder' => 'Password',
+                                    'placeholder' => 'Ծածկագիր',
                                     'autofocus' => true])
                                 ->label(false) ?>
                         </div>
                     </div>
                     <div class="form-group form-check">
                         <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                        <label class="form-check-label" for="exampleCheck1">Keep Me Signed In</label>
+                        <label class="form-check-label" for="exampleCheck1">Հիշել ինձ</label>
                     </div>
-                    <button class="btn btn-common log-btn">Submit</button>
+                    <button class="btn btn-common log-btn">Հաստատել</button>
                     <?php ActiveForm::end(); ?>
 
                     <ul class="form-links">
                         <li class="text-center">
-                            Don't have an account? Sign up as<br>
-                            <a href="<?= Url::to(['site/signup?role=' . User::ROLE_CANDIDATE]) ?>">Candidate</a> |
-                            <a href="<?= Url::to(['site/signup?role=' . User::ROLE_COMPANY]) ?>">Company</a>
+                            Դեռ հաշիվ չունե՞ք։ Գրանցվե՛ք որպես<br>
+                            <a href="<?= Url::to(['site/signup?role=' . User::ROLE_CANDIDATE]) ?>">Թեկնածու</a> |
+                            <a href="<?= Url::to(['site/signup?role=' . User::ROLE_COMPANY]) ?>">Գործատու</a>
                         </li>
                     </ul>
                 </div>
