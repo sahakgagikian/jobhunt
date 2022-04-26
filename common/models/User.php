@@ -2,6 +2,7 @@
 
 namespace common\models;
 
+use JetBrains\PhpStorm\ArrayShape;
 use JetBrains\PhpStorm\Pure;
 use Yii;
 use yii\base\Exception;
@@ -68,6 +69,20 @@ class User extends ActiveRecord implements IdentityInterface
             ['role', 'integer'],
             ['timezone', 'string'],
             ['timezone', 'required'],
+        ];
+    }
+
+    #[ArrayShape(['id' => "string", 'username' => "string", 'email' => "string", 'created_at' => "string", 'updated_at' => "string", 'role' => "string", 'status' => "string", 'timezone' => "string"])] #[Pure] public function attributeLabels(): array
+    {
+        return [
+            'id' => 'ID',
+            'username' => 'Մուտքանուն',
+            'email' => 'Էլ․ փոստ',
+            'created_at' => 'Ստեղծվել է',
+            'updated_at' => 'Թարմացվել է',
+            'role' => 'Դեր',
+            'status' => 'Կարգավիճակ',
+            'timezone' => 'Ժամային գոտի',
         ];
     }
 

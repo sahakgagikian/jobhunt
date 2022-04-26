@@ -47,5 +47,6 @@ return [
             ],
         ],
     ],
+    'language' => 'hy',
     'params' => $params,
 ];

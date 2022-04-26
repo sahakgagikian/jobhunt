@@ -72,7 +72,6 @@ $this->title = 'JobHunt | Գրանցվել որպես ' . $roleName;
                                     'accept' => 'image/*',
                                     'class' => 'avatar'
                                 ],
-                                'language' => 'hy',
                                 'pluginOptions' => [
                                     'initialPreview' => [
                                         $model->avatar ? $model->getAvatarUrl() : null
@@ -81,6 +80,10 @@ $this->title = 'JobHunt | Գրանցվել որպես ' . $roleName;
                                     'language' => substr(\Yii::$app->language, 0, 2),
                                     'dropZoneTitle' => Yii::t('app', 'Քաշեք և բաց թողեք ձեր լուսանկարն այստեղ...'),
                                     'browseLabel' => Yii::t('app', 'Ընտրել'),
+                                    'removeLabel' => 'Ջնջել',
+                                    'uploadLabel' => 'Վերբեռնել',
+                                    'msgPlaceholder' => 'Ընտրել ֆայլ․․․',
+                                    'msgProcessing' => 'Մշակվում է',
                                     'showCancel' => false,
                                     'showZoom' => false,
                                 ]

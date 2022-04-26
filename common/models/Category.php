@@ -49,12 +49,12 @@ class Category extends ActiveRecord
     {
         return [
             'id' => 'ID',
-            'title' => 'Title',
+            'title' => 'Անվանում',
             'imagePath' => 'Image',
-            'jobs_count' => 'Jobs Count',
-            'sort' => 'Sort',
-            'created_at' => 'Created At',
-            'updated_at' => 'Updated At',
+            'jobs_count' => 'Աշխատանքների քանակ',
+            'sort' => 'Տեսակ',
+            'created_at' => 'Ստեղծվել է',
+            'updated_at' => 'Թարմացվել է',
         ];
     }
 

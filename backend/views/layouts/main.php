@@ -35,11 +35,9 @@ AppAsset::register($this);
         ],
     ]);
     $menuItems = [
-        ['label' => 'Users', 'url' => ['/user']],
-        ['label' => 'Categories', 'url' => ['/category']],
-        ['label' => 'Jobs', 'url' => ['/job']],
-        ['label' => 'Candidates', 'url' => ['/candidate']],
-        ['label' => 'Companies', 'url' => ['/company']],
+        ['label' => 'Օգտատերեր', 'url' => ['/user']],
+        ['label' => 'Կատեգորիաներ', 'url' => ['/category']],
+        ['label' => 'Աշխատանքներ', 'url' => ['/job']],
     ];
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];

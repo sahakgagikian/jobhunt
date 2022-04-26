@@ -9,7 +9,7 @@ use yii\grid\GridView;
 /* @var $searchModel backend\models\CategorySearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Categories';
+$this->title = 'Կատեգորիաներ';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="category-index">
@@ -17,7 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Category', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Ստեղծել կատեգորիա', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -32,8 +32,11 @@ $this->params['breadcrumbs'][] = $this->title;
             'title',
 
             [
-                'attribute' => 'imageUrl',
+                'attribute' => 'Լուսանկար',
                 'format' => ['image', ['width' => '100', 'height' => '100']],
+                'value' => function ($item) {
+                    return $item->imageUrl;
+                }
             ],
 
             'jobs_count',
