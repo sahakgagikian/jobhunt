@@ -253,4 +253,14 @@ class User extends ActiveRecord implements IdentityInterface
     {
         return $this->avatar ? '/images/'. $this->avatar : null;
     }
+
+    public static function getAllCompanyUsernames(): array
+    {
+        return self::find()
+            ->select(['username'])
+            ->where(['role' => self::ROLE_COMPANY])
+            ->indexBy('id')
+            ->orderBy('username')
+            ->column();
+    }
 }
