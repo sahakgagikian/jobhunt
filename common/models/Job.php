@@ -48,15 +48,15 @@ class Job extends ActiveRecord
             [['title'], 'string', 'max' => 64],
             [['location'], 'string', 'max' => 255],
             [['working_hours'], 'string', 'max' => 16],
-            /*[
+            [
                 ['max_salary'],
                 'compare',
                 'compareAttribute' => 'min_salary',
-                'operator' => '!=',
+                'operator' => '>=',
                 'message' => 'Առավելագույն աշխատավարձը պետք է մեծ լինի նվազագույնից։',
                 'when' => function ($model) {
                     return $model->max_salary != null;
-                }],*/
+                }],
             [['description'], 'string', 'max' => 512],
             [['company_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::class, 'targetAttribute' => ['company_id' => 'id']],
             [['categoryIds'], 'each', 'rule' => ['exist', 'targetClass' => Category::class, 'targetAttribute' => 'id']],

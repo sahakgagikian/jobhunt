@@ -25,7 +25,7 @@ use yii\widgets\ActiveForm;
         'data' => $allCompanyUsernames,
         'model' => $model,
         'options' => [
-            'placeholder' => 'Choose company...',
+            'placeholder' => 'Ընտրել ցուցակից...',
             'multiple' => false
         ]
     ]);
@@ -68,6 +68,8 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'min_salary')->input('number', ['min' => 0, 'step' => 10000]) ?>
 
     <?= $form->field($model, 'max_salary')->input('number', ['min' => 0, 'step' => 10000]) ?>
+
+    <?= $form->field($model, 'description')->textarea() ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

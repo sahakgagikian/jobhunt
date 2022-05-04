@@ -78,18 +78,13 @@ class JobController extends AdminController
         $allCategoryIds = Category::getAllCategoryIds();
         $allCompanyUsernames = User::getAllCompanyUsernames();
 
-        if ($this->request->isPost) {/*
-            echo '<pre>';
-            print_r($this->request);
-            die;*/
+        if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
                 foreach ($model->categoryIds as $id) {
-                    $jobOfCategory = new JobCategory();
-
-                    $jobOfCategory->job_id = $model->id;
-                    $jobOfCategory->category_id = $id;
-                    $jobOfCategory->save();
+                    $jobCategory = new JobCategory();
+                    $this->setJobCategory($jobCategory, $model, $id);
                 }
+
                 foreach ($model->categories as $category) {
                     $category->jobs_count = $category->categoryJobsCount;
                     $category->save();
@@ -109,19 +104,47 @@ class JobController extends AdminController
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param int $id ID
      * @return string|Response
-     * @throws NotFoundHttpException if the model cannot be found
+     * @throws NotFoundHttpException|StaleObjectException if the model cannot be found
      */
     public function actionUpdate(int $id): Response|string
     {
         $model = $this->findModel($id);
+        $allCategoryIds = Category::getAllCategoryIds();
+        $allCompanyUsernames = User::getAllCompanyUsernames();
+        $jobCategoryModel = JobCategory::find()->where(['job_id' => $id])->all();
+
+        foreach ($model->categories as $category) {
+            $category->jobs_count = $category->categoryJobsCount - 1;
+            $category->save();
+        }
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
+            foreach ($jobCategoryModel as $jcm) {
+                $jcm->delete();
+            }
+
+            foreach ($model->categoryIds as $id) {
+                $jobCategory = new JobCategory();
+                $this->setJobCategory($jobCategory, $model, $id);
+                $newModel = $this->findModel($model->id);
+
+                foreach ($newModel->categories as $category) {
+                    $category->jobs_count = $category->categoryJobsCount;
+                    $category->save();
+                }
+            }
+            
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
-        return $this->render('update', [
-            'model' => $model,
-        ]);
+        return $this->render('update', compact('model', 'allCategoryIds', 'allCompanyUsernames'));
+    }
+
+    private function setJobCategory(JobCategory $jobCategory, $job, $categoryId)
+    {
+        $jobCategory->job_id = $job->id;
+        $jobCategory->category_id = $categoryId;
+        $jobCategory->save();
     }
 
     /**

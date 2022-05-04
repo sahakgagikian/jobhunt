@@ -107,4 +107,14 @@ class Category extends ActiveRecord
         return $this->hasMany(Job::class, ['id' => 'job_id'])
             ->via('jobsByCategory');
     }
+
+    /**
+     * Gets query for [[CategoryJobsCount]].
+     *
+     * @return bool|int|string
+     */
+    public function getCategoryJobsCount(): bool|int|string
+    {
+        return $this->getJobs()->count();
+    }
 }
