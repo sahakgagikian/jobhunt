@@ -83,8 +83,8 @@ Asset::register($this);
                                 <?php endif; ?>
 
                                 <?php if (Yii::$app->user->identity->role == User::ROLE_COMPANY): ?>
-                                    <li class="button-group" id="post-job">
-                                        <a href="<?= Url::to(['employers/post-job']) ?>" class="button btn btn-common">+
+                                    <li class="button-group" id="add-job">
+                                        <a href="<?= Url::to(['company/add-job']) ?>" class="button btn btn-common">+
                                             Նոր հայտարարություն</a>
                                     </li>
 
@@ -95,11 +95,11 @@ Asset::register($this);
                                         </a>
 
                                         <ul class="dropdown-menu">
-                                            <li><a class="dropdown-item" id="post-job"
-                                                   href="<?= Url::to(['employers/post-job']) ?>">Ավելացնել
+                                            <li><a class="dropdown-item" id="add-job"
+                                                   href="<?= Url::to(['company/add-job']) ?>">Ավելացնել
                                                     հայտարարություն</a></li>
                                             <li><a class="dropdown-item" id="manage-jobs"
-                                                   href="<?= Url::to(['employers/manage-jobs']) ?>">Իմ
+                                                   href="<?= Url::to(['company/manage-jobs']) ?>">Իմ
                                                     հայտարարությունները</a>
                                             </li>
                                         </ul>
@@ -113,7 +113,7 @@ Asset::register($this);
 
                                         <ul class="dropdown-menu">
                                             <li><a class="dropdown-item" id="manage-applications"
-                                                   href="<?= Url::to(['employers/manage-applications']) ?>">Ստացված
+                                                   href="<?= Url::to(['company/manage-applications']) ?>">Ստացված
                                                     դիմումներ</a></li>
                                             <li><a class="dropdown-item" id="browse-resumes"
                                                    href="<?= Url::to(['resume/browse-resumes']) ?>">Ռեզյումեներ</a></li>
@@ -223,19 +223,6 @@ Asset::register($this);
         </section>
         <!-- Footer area End -->
 
-        <!-- Copyright Start  -->
-        <div id="copyright">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="site-info text-center">
-                            <p>Designed and Developed by <a href="https://uideck.com" rel="nofollow">UIdeck</a></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Copyright End -->
     </footer>
     <!-- Footer Section End -->
 

@@ -68,7 +68,7 @@ class Job extends ActiveRecord
     {
         return [
             'id' => 'ID',
-            'title' => 'Անվանում',
+            'title' => 'Պաշտոն',
             'company_id' => 'Գործատու',
             'vacancies_count' => 'Հաստիքների քանակ',
             'location' => 'Գտնվելու վայր',

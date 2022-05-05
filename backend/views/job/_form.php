@@ -11,6 +11,7 @@ use yii\widgets\ActiveForm;
 /* @var $model common\models\Job */
 /* @var $form yii\widgets\ActiveForm */
 /* @var $allCompanyUsernames array */
+/* @var $allCategoryIds array */
 ?>
 
 <div class="job-form">
@@ -51,7 +52,7 @@ use yii\widgets\ActiveForm;
     ]);*/ ?>
 
     <?= $form->field($model, 'categoryIds')->widget(Select2::class, [
-        'data' => Category::getAllCategoryIds(),
+        'data' => $allCategoryIds,
         'model' => $model,
         'options' => [
             'placeholder' => 'Ընտրել ցուցակից...',

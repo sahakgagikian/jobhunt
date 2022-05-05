@@ -72,4 +72,11 @@ class JobCategory extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Job::class, ['id' => 'job_id']);
     }
+
+    public function setJobCategory(JobCategory $jobCategory, $job, $categoryId)
+    {
+        $jobCategory->job_id = $job->id;
+        $jobCategory->category_id = $categoryId;
+        $jobCategory->save();
+    }
 }

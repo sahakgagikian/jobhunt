@@ -82,11 +82,11 @@ class JobController extends AdminController
             if ($model->load($this->request->post()) && $model->save()) {
                 foreach ($model->categoryIds as $id) {
                     $jobCategory = new JobCategory();
-                    $this->setJobCategory($jobCategory, $model, $id);
+                    $jobCategory->setJobCategory($jobCategory, $model, $id);
                 }
 
                 foreach ($model->categories as $category) {
-                    $category->jobs_count = $category->categoryJobsCount;
+                    $category->vacancies_count = $category->categoryJobsCount;
                     $category->save();
                 }
 
@@ -125,7 +125,7 @@ class JobController extends AdminController
 
             foreach ($model->categoryIds as $id) {
                 $jobCategory = new JobCategory();
-                $this->setJobCategory($jobCategory, $model, $id);
+                $jobCategory->setJobCategory($jobCategory, $model, $id);
                 $newModel = $this->findModel($model->id);
 
                 foreach ($newModel->categories as $category) {
@@ -138,13 +138,6 @@ class JobController extends AdminController
         }
 
         return $this->render('update', compact('model', 'allCategoryIds', 'allCompanyUsernames'));
-    }
-
-    private function setJobCategory(JobCategory $jobCategory, $job, $categoryId)
-    {
-        $jobCategory->job_id = $job->id;
-        $jobCategory->category_id = $categoryId;
-        $jobCategory->save();
     }
 
     /**
