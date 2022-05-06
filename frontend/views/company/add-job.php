@@ -11,7 +11,7 @@ use kartik\select2\Select2;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
-$this->title = 'Նոր հայտարարություն';
+$this->title = $currentUser->username . ' - Նոր հայտարարություն';
 ?>
 
 <!-- Page Header Start -->

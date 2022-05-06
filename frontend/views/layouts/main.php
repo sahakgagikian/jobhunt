@@ -99,7 +99,7 @@ Asset::register($this);
                                                    href="<?= Url::to(['company/add-job']) ?>">Ավելացնել
                                                     հայտարարություն</a></li>
                                             <li><a class="dropdown-item" id="manage-jobs"
-                                                   href="<?= Url::to(['company/manage-jobs']) ?>">Իմ
+                                                   href="<?= Url::to(['company/my-announcements']) ?>">Իմ
                                                     հայտարարությունները</a>
                                             </li>
                                         </ul>
