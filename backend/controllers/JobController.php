@@ -86,7 +86,7 @@ class JobController extends AdminController
                 }
 
                 foreach ($model->categories as $category) {
-                    $category->vacancies_count = $category->categoryJobsCount;
+                    $category->jobs_count = $category->categoryJobsCount;
                     $category->save();
                 }
 
@@ -150,7 +150,14 @@ class JobController extends AdminController
      */
     public function actionDelete(int $id): Response
     {
-        $this->findModel($id)->delete();
+        $model = $this->findModel($id);
+
+        foreach ($model->categories as $category) {
+            $category->jobs_count = $category->categoryJobsCount - 1;
+            $category->save();
+        }
+
+        $model->delete();
 
         return $this->redirect(['index']);
     }

@@ -56,7 +56,8 @@ use yii\widgets\ActiveForm;
         'model' => $model,
         'options' => [
             'placeholder' => 'Ընտրել ցուցակից...',
-            'multiple' => true
+            'multiple' => true,
+            'required' => true
         ]
     ])->label('Կատեգորիա'); ?>
 

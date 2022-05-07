@@ -4,7 +4,7 @@ use yii\helpers\Url;
 
 ?>
 
-<a href="<?= Url::to(['company/view-announcement/' . $model->id]) ?>">
+<a href="<?= Url::to(['announcement/view/' . $model->id]) ?>">
     <div class="applications-content">
         <div class="row">
             <div class="col-md-4">

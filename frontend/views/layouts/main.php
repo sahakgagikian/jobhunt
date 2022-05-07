@@ -84,7 +84,7 @@ Asset::register($this);
 
                                 <?php if (Yii::$app->user->identity->role == User::ROLE_COMPANY): ?>
                                     <li class="button-group" id="add-job">
-                                        <a href="<?= Url::to(['company/add-job']) ?>" class="button btn btn-common">+
+                                        <a href="<?= Url::to(['announcement/add']) ?>" class="button btn btn-common">+
                                             Նոր հայտարարություն</a>
                                     </li>
 
@@ -96,10 +96,10 @@ Asset::register($this);
 
                                         <ul class="dropdown-menu">
                                             <li><a class="dropdown-item" id="add-job"
-                                                   href="<?= Url::to(['company/add-job']) ?>">Ավելացնել
+                                                   href="<?= Url::to(['announcement/add']) ?>">Ավելացնել
                                                     հայտարարություն</a></li>
                                             <li><a class="dropdown-item" id="manage-jobs"
-                                                   href="<?= Url::to(['company/my-announcements']) ?>">Իմ
+                                                   href="<?= Url::to(['announcement/view-all']) ?>">Իմ
                                                     հայտարարությունները</a>
                                             </li>
                                         </ul>
@@ -113,7 +113,7 @@ Asset::register($this);
 
                                         <ul class="dropdown-menu">
                                             <li><a class="dropdown-item" id="manage-applications"
-                                                   href="<?= Url::to(['company/manage-applications']) ?>">Ստացված
+                                                   href="<?= Url::to(['application/view-all']) ?>">Ստացված
                                                     դիմումներ</a></li>
                                             <li><a class="dropdown-item" id="browse-resumes"
                                                    href="<?= Url::to(['resume/browse-resumes']) ?>">Ռեզյումեներ</a></li>
