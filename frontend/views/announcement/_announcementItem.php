@@ -1,28 +1,25 @@
 <?php
 
+use common\models\Job;
 use yii\helpers\Url;
 
-?>
+/* @var $model Job */
 
-<a href="<?= Url::to(['announcement/view/' . $model->id]) ?>">
-    <div class="applications-content">
-        <div class="row">
-            <div class="col-md-4">
-                <div class="thums">
-                    <img src="<?= $model->job->company->imageUrl ?>" alt="">
+?>
+<div class="col-lg-4 col-md-6 col-xs-12">
+    <a href="<?= Url::to(['announcement/view/' . $model->id]) ?>">
+        <div class="job-featured">
+            <div class="icon">
+                <img src="/frontend/web/img/features/img1.png" alt="">
+            </div>
+            <div class="content">
+                <h3><a href="../../../backend/web/index.php"><?= $model->title ?></a></h3>
+                <p class="brand"><?= $model->company->username ?></p>
+                <div class="tags">
+                    <span><i class="lni-map-marker"></i><?= $model->location ?></span>
                 </div>
-                <h3><?= $model->job->title ?></h3>
-                <span><?= $model->candidate->username ?></span>
-            </div>
-            <div class="col-md-3">
-                <p><span class="full-time"><?= $model->job->working_hours ?></span></p>
-            </div>
-            <div class="col-md-3">
-                <p>Nov 14th, 2017</p>
-            </div>
-            <div class="col-md-2">
-                <p>Rejected</p>
+                <span class="full-time"><?= $model->working_hours == 8 ? 'Լրիվ դրույք' : 'Ոչ լրիվ դրույք' ?></span>
             </div>
         </div>
-    </div>
-</a>
+    </a>
+</div>

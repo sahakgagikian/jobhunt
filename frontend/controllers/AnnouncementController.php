@@ -33,7 +33,7 @@ class AnnouncementController extends Controller
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['add', 'update', 'delete', 'view', 'view-all'],
+                        'actions' => ['add', 'update', 'delete', 'view', 'my-announcements'],
                         'allow' => true,
                         'roles' => ['@'],
                         'matchCallback' => function ($rule, $action) {
@@ -170,7 +170,7 @@ class AnnouncementController extends Controller
      *
      * @return string
      */
-    public function actionViewAll(): string
+    public function actionMyAnnouncements(): string
     {
         /* @var User $currentUser */
 
@@ -178,6 +178,6 @@ class AnnouncementController extends Controller
         $searchModel = new JobSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
 
-        return $this->render('view-all', compact('searchModel', 'dataProvider', 'currentUser'));
+        return $this->render('my-announcements', compact('searchModel', 'dataProvider', 'currentUser'));
     }
 }

@@ -99,7 +99,7 @@ Asset::register($this);
                                                    href="<?= Url::to(['announcement/add']) ?>">Ավելացնել
                                                     հայտարարություն</a></li>
                                             <li><a class="dropdown-item" id="manage-jobs"
-                                                   href="<?= Url::to(['announcement/view-all']) ?>">Իմ
+                                                   href="<?= Url::to(['announcement/my-announcements']) ?>">Իմ
                                                     հայտարարությունները</a>
                                             </li>
                                         </ul>
@@ -113,7 +113,7 @@ Asset::register($this);
 
                                         <ul class="dropdown-menu">
                                             <li><a class="dropdown-item" id="manage-applications"
-                                                   href="<?= Url::to(['application/view-all']) ?>">Ստացված
+                                                   href="<?= Url::to(['application/my-announcements']) ?>">Ստացված
                                                     դիմումներ</a></li>
                                             <li><a class="dropdown-item" id="browse-resumes"
                                                    href="<?= Url::to(['resume/browse-resumes']) ?>">Ռեզյումեներ</a></li>
