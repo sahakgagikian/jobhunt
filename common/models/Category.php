@@ -4,6 +4,7 @@ namespace common\models;
 
 use JetBrains\PhpStorm\ArrayShape;
 use Yii;
+use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
 
 /**
@@ -79,5 +80,41 @@ class Category extends ActiveRecord
         } else {
             return false;
         }
+    }
+
+    public static function getAllCategoryIds(): array
+    {
+        return self::find()->select(['title'])->indexBy('id')->column();
+    }
+
+    /**
+     * Gets query for [[JobsByCategory]].
+     *
+     * @return ActiveQuery
+     */
+    public function getJobsByCategory(): ActiveQuery
+    {
+        return $this->hasMany(JobCategory::class, ['category_id' => 'id']);
+    }
+
+    /**
+     * Gets query for [[Jobs]].
+     *
+     * @return ActiveQuery
+     */
+    public function getJobs(): ActiveQuery
+    {
+        return $this->hasMany(Job::class, ['id' => 'job_id'])
+            ->via('jobsByCategory');
+    }
+
+    /**
+     * Gets query for [[CategoryJobsCount]].
+     *
+     * @return bool|int|string
+     */
+    public function getCategoryJobsCount(): bool|int|string
+    {
+        return $this->getJobs()->count();
     }
 }

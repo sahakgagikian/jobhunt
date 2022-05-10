@@ -9,7 +9,7 @@ class UsernameValidator extends Validator
     public function init()
     {
         parent::init();
-        $this->message = "Username shouldn't contain word 'admin'.";
+        $this->message = "Օգտանունը չպետք է պարունակի 'admin' բառը։";
     }
 
     public function validateAttribute($model, $attribute)
