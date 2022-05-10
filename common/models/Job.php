@@ -109,9 +109,4 @@ class Job extends ActiveRecord
     {
         return $this->hasOne(User::class, ['id' => 'company_id']);
     }
-
-    public static function getCompanyJobs($id): array
-    {
-        return self::find()->where(['company_id' => $id])->all();
-    }
 }

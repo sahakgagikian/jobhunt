@@ -6,20 +6,16 @@ use yii\helpers\Url;
 /* @var $model Job */
 
 ?>
-<div class="col-lg-4 col-md-6 col-xs-12">
-    <a href="<?= Url::to(['announcement/view/' . $model->id]) ?>">
-        <div class="job-featured">
-            <div class="icon">
-                <img src="/frontend/web/img/features/img1.png" alt="">
+
+<a href="<?= Url::to(['announcement/view/' . $model->id]) ?>">
+    <div class="job-featured">
+        <div class="content">
+            <h3><?= $model->title ?></h3>
+            <p class="brand"><?= $model->company->username ?></p>
+            <div class="tags">
+                <span><i class="lni-map-marker"></i><?= $model->location ?></span>
             </div>
-            <div class="content">
-                <h3><a href="../../../backend/web/index.php"><?= $model->title ?></a></h3>
-                <p class="brand"><?= $model->company->username ?></p>
-                <div class="tags">
-                    <span><i class="lni-map-marker"></i><?= $model->location ?></span>
-                </div>
-                <span class="full-time"><?= $model->working_hours == 8 ? 'Լրիվ դրույք' : 'Ոչ լրիվ դրույք' ?></span>
-            </div>
+            <span class="full-time"><?= $model->working_hours == 8 ? 'Լրիվ դրույք' : 'Ոչ լրիվ դրույք' ?></span>
         </div>
-    </a>
-</div>
+    </div>
+</a>

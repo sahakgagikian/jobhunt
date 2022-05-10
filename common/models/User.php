@@ -8,6 +8,7 @@ use Yii;
 use yii\base\Exception;
 use yii\base\NotSupportedException;
 use yii\behaviors\TimestampBehavior;
+use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
 use yii\web\IdentityInterface;
 
@@ -262,5 +263,10 @@ class User extends ActiveRecord implements IdentityInterface
             ->indexBy('id')
             ->orderBy('username')
             ->column();
+    }
+
+    public function getCompanyJobs(): ActiveQuery
+    {
+        return Job::find()->where(['company_id' => $this->id]);
     }
 }

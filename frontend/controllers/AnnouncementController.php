@@ -2,13 +2,13 @@
 
 namespace frontend\controllers;
 
-use backend\models\JobSearch;
 use common\models\Category;
 use common\models\Job;
 use common\models\JobCategory;
 use common\models\User;
 use JetBrains\PhpStorm\ArrayShape;
 use Yii;
+use yii\data\ActiveDataProvider;
 use yii\db\StaleObjectException;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
@@ -172,12 +172,13 @@ class AnnouncementController extends Controller
      */
     public function actionMyAnnouncements(): string
     {
-        /* @var User $currentUser */
+        /* @var User $authorizedCompany */
 
-        $currentUser = Yii::$app->user->identity;
-        $searchModel = new JobSearch();
-        $dataProvider = $searchModel->search($this->request->queryParams);
+        $authorizedCompany = Yii::$app->user->identity;
+        $dataProvider = new ActiveDataProvider([
+            'query' => $authorizedCompany->getCompanyJobs(),
+        ]);
 
-        return $this->render('my-announcements', compact('searchModel', 'dataProvider', 'currentUser'));
+        return $this->render('my-announcements', compact('dataProvider', 'authorizedCompany'));
     }
 }
