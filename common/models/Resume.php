@@ -84,19 +84,19 @@ class Resume extends ActiveRecord
         return Resume::find()->with(['educations', 'experiences', 'skills'])->where(['id' => $id])->one();
     }
 
-    public static function getResume($id, $role): bool|array|Resume|ActiveRecord
+    public static function getResume($id): bool|array|Resume|ActiveRecord
     {
         /* @var User $currentUser */
         /* @var Resume $currentResume */
 
         $currentUser = Yii::$app->getUser()->identity;
-        $currentResume = self::getCurrentResume($id);
+        $viewAllowed = in_array($id, $currentUser->resumeIds);
 
-        if (!$currentResume || !in_array($currentResume->id, $currentUser->{$role}->resumeIds)) {
+        if (!$viewAllowed) {
             return false;
         }
 
-        return $currentResume;
+        return self::getCurrentResume($id) ?? false;
     }
 
     /**

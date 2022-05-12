@@ -15,6 +15,7 @@ use yii\base\InvalidConfigException;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
+use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
 use yii\web\Response;
 
@@ -94,7 +95,7 @@ class ResumeController extends Controller
                 SiteHelper::handleAddonExistence('Experience', $resumeModel, Experience::class, $params);
                 SiteHelper::handleAddonExistence('Skill', $resumeModel, Skill::class, $params);
 
-                return $this->goHome();
+                return $this->redirect(['view', 'id' => $resumeModel->id]);
             }
         }
 
@@ -148,15 +149,15 @@ class ResumeController extends Controller
      *
      * @param $id
      * @return string
-     * @throws NotFoundHttpException when user tries to view resume that doesn't belong to them, or it is not sent to them
+     * @throws ForbiddenHttpException when user tries to view resume that doesn't belong to them, or it is not sent to them
      */
     public function actionView($id): string
     {
         /* @var Resume $currentResume */
-        $currentResume = Resume::getResume($id, 'candidate');
+        $currentResume = Resume::getResume($id);
 
         if (!$currentResume) {
-            throw new NotFoundHttpException('The requested page does not exist.');
+            throw new ForbiddenHttpException('The requested page does not exist.');
         }
 
         return $this->render('view', compact('currentResume'));
