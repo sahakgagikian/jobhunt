@@ -2,10 +2,6 @@ $(document).ready(function () {
     let eduEls = document.getElementsByClassName('edu');
     window.educationsFormIndex = eduEls.length;
 
-    let url = window.location.href;
-    let arr = url.split('/');
-    let id = arr[arr.length - 1];
-
     $(document).on('click', '.add-education-form-button', function(e) {
         e.preventDefault();
 
@@ -24,7 +20,8 @@ $(document).ready(function () {
     })
 
 
-    window.experiencesFormIndex = 0;
+    let expEls = document.getElementsByClassName('exp');
+    window.experiencesFormIndex = expEls.length;
 
     $(document).on('click', '.add-experience-form-button', function(e) {
         e.preventDefault();
@@ -44,7 +41,8 @@ $(document).ready(function () {
     })
 
 
-    window.skillsFormIndex = 0;
+    let skillEls = document.getElementsByClassName('skill');
+    window.skillsFormIndex = skillEls.length;
 
     $(document).on('click', '.add-skill-form-button', function(e) {
         e.preventDefault();

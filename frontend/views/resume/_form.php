@@ -82,10 +82,11 @@
                                 'placeholder' => 'Ձեր տարիքը'])
                             ->label(false) ?>
                     </div>
+                    <hr>
 
                     <h3>Կրթություն</h3>
                     <div id="educations-container">
-                        <button class="float-left add-education-form-button">
+                        <button class="float-left add-education-form-button btn-common">
                             <i class="ti-plus"></i> Ավելացնել կրթություն
                         </button>
                         <br>
@@ -95,23 +96,33 @@
                             <?php endforeach; ?>
                         <?php endif; ?>
                     </div>
-                    <br>
+                    <hr>
 
                     <h3>Աշխատանքային փորձ</h3>
                     <div id="experiences-container">
-                        <button class="float-left add-experience-form-button">
+                        <button class="float-left add-experience-form-button btn-common">
                             <i class="ti-plus"></i> Ավելացնել փորձ
                         </button>
                         <br>
+                        <?php if ($experiences = $resumeModel->experiences): ?>
+                            <?php foreach ($experiences as $key => $value): ?>
+                                <?= $this->render('add-experience', compact('key', 'value')) ?>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
                     </div>
-                    <br>
+                    <hr>
 
                     <h3>Հմտություններ</h3>
                     <div id="skills-container">
-                        <button class="float-left add-skill-form-button">
+                        <button class="float-left add-skill-form-button btn-common">
                             <i class="ti-plus"></i> Ավելացնել հմտություն
                         </button>
                         <br>
+                        <?php if ($skills = $resumeModel->skills): ?>
+                            <?php foreach ($skills as $key => $value): ?>
+                                <?= $this->render('add-skill', compact('key', 'value')) ?>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
                     </div>
                     <br>
 

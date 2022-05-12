@@ -3,11 +3,6 @@
 /* @var $value Education */
 
 use common\models\Education;
-
-if (is_null($key)) {
-    $key = 'eduIndex';
-}
-
 ?>
 
 <section class="edu" data-index="<?= $key ?>">
@@ -59,10 +54,10 @@ if (is_null($key)) {
         </div>
     </div>
     <div class="add-post-btn educations-container">
-        <button class="float-left add-education-form-button">
+        <button class="float-left add-education-form-button btn-common">
             <i class="ti-plus"></i> Ավելացնել կրթություն
         </button>
-        <button class="float-right remove-education-form-button" data-index="<?= $key ?>">
+        <button class="float-right remove-education-form-button btn-danger" data-index="<?= $key ?>">
             <i class="ti-trash"></i> Ջնջել այս կրթությունը
         </button>
     </div>

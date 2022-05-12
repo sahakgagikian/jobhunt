@@ -4,6 +4,7 @@
 /* @var $currentResume Resume */
 
 use common\models\Resume;
+use yii\helpers\Html;
 
 $this->title = 'Ռեզյումե - ' . $currentResume->candidate_name;
 ?>
@@ -21,6 +22,23 @@ $this->title = 'Ռեզյումե - ' . $currentResume->candidate_name;
     </div>
 </div>
 <!-- Page Header End -->
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+            <?= Html::a('Խմբագրել', ['update', 'id' => $currentResume->id], ['class' => 'btn btn-primary m-1 p-2']) ?>
+        </div>
+        <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+            <?= Html::a('Հեռացնել', ['delete', 'id' => $currentResume->id], [
+                'class' => 'btn btn-danger m-1 p-2',
+                'data' => [
+                    'confirm' => 'Վստա՞հ եք, որ ուզում եք հեռացնել այս ռեզյումեն։',
+                    'method' => 'post',
+                ],
+            ]) ?>
+        </div>
+    </div>
+</div>
 
 <!-- Start Content -->
 <div id="content">
@@ -73,7 +91,7 @@ $this->title = 'Ռեզյումե - ' . $currentResume->candidate_name;
                                 <div class="manager-content">
                                     <div class="manager-info">
                                         <div class="manager-name">
-                                            <h4><a href="#">Experiences</a></h4>
+                                            <h4><a href="#">Աշխատանքային փորձ</a></h4>
                                             <?php foreach ($currentResume->experiences as $experience): ?>
                                                 <hr>
                                                 <h5><strong>Պաշտոն՝ </strong><?= $experience->title ?></h5>

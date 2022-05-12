@@ -11,6 +11,7 @@ use frontend\helpers\SiteHelper;
 use JetBrains\PhpStorm\ArrayShape;
 use Yii;
 use yii\base\InvalidConfigException;
+use yii\db\StaleObjectException;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
@@ -48,11 +49,12 @@ class ResumeController extends Controller
                         'actions' => [
                             'create',
                             'update',
+                            'delete',
+                            'view',
                             'manage-resumes',
                             'add-education-form',
                             'add-experience-form',
-                            'add-skill-form',
-                            'view'
+                            'add-skill-form'
                         ],
                         'allow' => true,
                         'roles' => ['@'],
@@ -117,6 +119,18 @@ class ResumeController extends Controller
             $params = $this->request->getBodyParams();
 
             if ($resumeModel->save()) {
+                foreach ($resumeModel->educations as $educationModel) {
+                    $educationModel->delete();
+                }
+
+                foreach ($resumeModel->experiences as $experienceModel) {
+                    $experienceModel->delete();
+                }
+
+                foreach ($resumeModel->skills as $skillModel) {
+                    $skillModel->delete();
+                }
+
                 SiteHelper::handleAddonExistence('Education', $resumeModel, Education::class, $params);
                 SiteHelper::handleAddonExistence('Experience', $resumeModel, Experience::class, $params);
                 SiteHelper::handleAddonExistence('Skill', $resumeModel, Skill::class, $params);
@@ -128,6 +142,32 @@ class ResumeController extends Controller
         return $this->render('update', compact('resumeModel'));
     }
 
+    /**
+     * Deletes announcement.
+     * @param int $id ID
+     * @return Response
+     * @throws StaleObjectException
+     */
+    public function actionDelete(int $id): Response
+    {
+        $resumeModel = Resume::findOne(['id' => $id]);
+
+        foreach ($resumeModel->educations as $educationModel) {
+            $educationModel->delete();
+        }
+
+        foreach ($resumeModel->experiences as $experienceModel) {
+            $experienceModel->delete();
+        }
+
+        foreach ($resumeModel->skills as $skillModel) {
+            $skillModel->delete();
+        }
+
+        $resumeModel->delete();
+
+        return $this->goHome();
+    }
 
     /**
      * Renders education form.
@@ -146,7 +186,7 @@ class ResumeController extends Controller
      */
     public function actionAddExperienceForm(): string
     {
-        return $this->renderAjax('add-experience');
+        return $this->renderAjax('add-experience', ['key' => 'expIndex']);
     }
 
     /**
@@ -156,7 +196,7 @@ class ResumeController extends Controller
      */
     public function actionAddSkillForm(): string
     {
-        return $this->renderAjax('add-skill');
+        return $this->renderAjax('add-skill', ['key' => 'skillIndex']);
     }
 
     /**
