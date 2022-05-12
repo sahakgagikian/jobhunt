@@ -1,5 +1,10 @@
 $(document).ready(function () {
-    window.educationsFormIndex = 0;
+    let eduEls = document.getElementsByClassName('edu');
+    window.educationsFormIndex = eduEls.length;
+
+    let url = window.location.href;
+    let arr = url.split('/');
+    let id = arr[arr.length - 1];
 
     $(document).on('click', '.add-education-form-button', function(e) {
         e.preventDefault();

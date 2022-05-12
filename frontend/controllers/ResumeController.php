@@ -2,7 +2,6 @@
 
 namespace frontend\controllers;
 
-use common\models\Candidate;
 use common\models\Education;
 use common\models\Experience;
 use common\models\Resume;
@@ -16,7 +15,6 @@ use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\ForbiddenHttpException;
-use yii\web\NotFoundHttpException;
 use yii\web\Response;
 
 /**
@@ -49,6 +47,7 @@ class ResumeController extends Controller
                     [
                         'actions' => [
                             'create',
+                            'update',
                             'manage-resumes',
                             'add-education-form',
                             'add-experience-form',
@@ -103,13 +102,41 @@ class ResumeController extends Controller
     }
 
     /**
+     * Updates an existing Resume model.
+     * If update is successful, the browser will be redirected to the 'view' page.
+     * @param int $id ID
+     * @return string|Response
+     * @throws InvalidConfigException
+     */
+    public function actionUpdate(int $id): Response|string
+    {
+        /* @var Resume $resumeModel */
+        $resumeModel = Resume::getCurrentResume($id);
+
+        if ($this->request->isPost && $resumeModel->load($this->request->post())) {
+            $params = $this->request->getBodyParams();
+
+            if ($resumeModel->save()) {
+                SiteHelper::handleAddonExistence('Education', $resumeModel, Education::class, $params);
+                SiteHelper::handleAddonExistence('Experience', $resumeModel, Experience::class, $params);
+                SiteHelper::handleAddonExistence('Skill', $resumeModel, Skill::class, $params);
+
+                return $this->redirect(['view', 'id' => $resumeModel->id]);
+            }
+        }
+
+        return $this->render('update', compact('resumeModel'));
+    }
+
+
+    /**
      * Renders education form.
      *
      * @return string
      */
     public function actionAddEducationForm(): string
     {
-        return $this->renderAjax('add-education');
+        return $this->renderAjax('add-education', ['key' => 'eduIndex']);
     }
 
     /**

@@ -12,7 +12,7 @@ use common\models\Experience;
 use common\models\Resume;
 use common\models\Skill;
 
-$this->title = Yii::$app->user->identity->username . ' - Ավելացնել ռեզյումե';
+$this->title = $resumeModel->candidate_name . ' - Խմբագրել ռեզյումեն';
 ?>
 
 <!-- Page Header Start -->
@@ -21,7 +21,7 @@ $this->title = Yii::$app->user->identity->username . ' - Ավելացնել ռե
         <div class="row">
             <div class="col-lg-12">
                 <div class="inner-header">
-                    <h3>Ավելացնել ռեզյումե</h3>
+                    <h3><?= $resumeModel->candidate_name ?> - Խմբագրել ռեզյումեն</h3>
                 </div>
             </div>
         </div>
