@@ -5,6 +5,9 @@
 use yii\helpers\Url;
 
 $this->title = 'JobHunt | Պորտալ աշխատանք որսալու համար';
+/*echo '<pre>';
+print_r(Yii::$app->user->identity->getResumeIds());
+die;*/
 ?>
 <!-- Find Job Section Start -->
 <div class="container" style="margin-top: 150px">

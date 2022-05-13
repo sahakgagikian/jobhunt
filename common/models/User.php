@@ -29,6 +29,8 @@ use yii\web\IdentityInterface;
  * @property integer $role
  * @property integer $avatar
  * @property string $timezone
+ * @property ActiveQuery $candidateResumes
+ * @property array $resumeIds
  */
 class User extends ActiveRecord implements IdentityInterface
 {
@@ -268,5 +270,15 @@ class User extends ActiveRecord implements IdentityInterface
     public function getCompanyJobs(): ActiveQuery
     {
         return Job::find()->where(['company_id' => $this->id]);
+    }
+
+    public function getCandidateResumes(): ActiveQuery
+    {
+        return $this->hasMany(Resume::class, ['candidate_id' => 'id']);
+    }
+
+    public function getResumeIds(): array
+    {
+        return $this->getCandidateResumes()->select('id')->column();
     }
 }

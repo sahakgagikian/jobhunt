@@ -1,11 +1,12 @@
 $(document).ready(function () {
-    window.educationsFormIndex = 0;
+    let eduEls = document.getElementsByClassName('edu');
+    window.educationsFormIndex = eduEls.length;
 
     $(document).on('click', '.add-education-form-button', function(e) {
         e.preventDefault();
 
         $.ajax({
-            url: "/candidates/add-education-form",
+            url: "/resume/add-education-form",
             success: function (result) {
                 $("#educations-container").append(result.replaceAll('eduIndex', window.educationsFormIndex));
                 window.educationsFormIndex++;
@@ -19,13 +20,14 @@ $(document).ready(function () {
     })
 
 
-    window.experiencesFormIndex = 0;
+    let expEls = document.getElementsByClassName('exp');
+    window.experiencesFormIndex = expEls.length;
 
     $(document).on('click', '.add-experience-form-button', function(e) {
         e.preventDefault();
 
         $.ajax({
-            url: "/candidates/add-experience-form",
+            url: "/resume/add-experience-form",
             success: function (result) {
                 $("#experiences-container").append(result.replaceAll('expIndex', window.experiencesFormIndex));
                 window.experiencesFormIndex++;
@@ -39,13 +41,14 @@ $(document).ready(function () {
     })
 
 
-    window.skillsFormIndex = 0;
+    let skillEls = document.getElementsByClassName('skill');
+    window.skillsFormIndex = skillEls.length;
 
     $(document).on('click', '.add-skill-form-button', function(e) {
         e.preventDefault();
 
         $.ajax({
-            url: "/candidates/add-skill-form",
+            url: "/resume/add-skill-form",
             success: function (result) {
                 $("#skills-container").append(result.replaceAll('skillIndex', window.skillsFormIndex));
                 window.skillsFormIndex++;
