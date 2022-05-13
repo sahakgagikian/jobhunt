@@ -29,6 +29,7 @@ use yii\web\IdentityInterface;
  * @property integer $role
  * @property integer $avatar
  * @property string $timezone
+ * @property ActiveQuery $candidateResumes
  * @property array $resumeIds
  */
 class User extends ActiveRecord implements IdentityInterface

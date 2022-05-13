@@ -10,7 +10,9 @@ use common\models\User;
 use frontend\helpers\SiteHelper;
 use JetBrains\PhpStorm\ArrayShape;
 use Yii;
+use yii\base\InvalidCallException;
 use yii\base\InvalidConfigException;
+use yii\db\ActiveQuery;
 use yii\db\StaleObjectException;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
@@ -51,7 +53,7 @@ class ResumeController extends Controller
                             'update',
                             'delete',
                             'view',
-                            'manage-resumes',
+                            'view-all',
                             'add-education-form',
                             'add-experience-form',
                             'add-skill-form'
@@ -152,6 +154,10 @@ class ResumeController extends Controller
     {
         $resumeModel = Resume::findOne(['id' => $id]);
 
+        if (!$resumeModel) {
+            throw new InvalidCallException("Գործողությունն անհասանելի է:");
+        }
+
         foreach ($resumeModel->educations as $educationModel) {
             $educationModel->delete();
         }
@@ -166,7 +172,7 @@ class ResumeController extends Controller
 
         $resumeModel->delete();
 
-        return $this->goHome();
+        return $this->redirect(['view-all']);
     }
 
     /**
@@ -202,14 +208,15 @@ class ResumeController extends Controller
     /**
      * Displays resume managing page.
      *
-     * @return mixed
+     * @return string
      */
-    /*public function actionManageResumes()
+    public function actionViewAll(): string
     {
-        $candidateResumes = User::getCurrentCandidate()->resumes;
+        $currentCandidate = Yii::$app->user->identity;
+        $candidateResumes = $currentCandidate->candidateResumes;
 
-        return $this->render('manage-resumes', compact('candidateResumes'));
-    }*/
+        return $this->render('view-all', compact('candidateResumes'));
+    }
 
     /**
      * Displays resume view page.

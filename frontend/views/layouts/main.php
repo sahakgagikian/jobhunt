@@ -76,7 +76,7 @@ Asset::register($this);
                                                    href="<?= Url::to(['resume/create']) ?>">Ավելացնել ռեզյումե</a>
                                             </li>
                                             <li><a class="dropdown-item" id="manage-resumes"
-                                                   href="<?= Url::to(['resume/manage-resumes']) ?>">Իմ ռեզյումեները</a>
+                                                   href="<?= Url::to(['resume/view-all']) ?>">Իմ ռեզյումեները</a>
                                             </li>
                                         </ul>
                                     </li>
