@@ -29,7 +29,7 @@ class AnnouncementController extends Controller
                 'class' => AccessControl::class,
                 'rules' => [
                     [
-                        'actions' => ['login', 'error'],
+                        'actions' => ['login', 'error', 'search'],
                         'allow' => true,
                     ],
                     [
@@ -180,5 +180,19 @@ class AnnouncementController extends Controller
         ]);
 
         return $this->render('my-announcements', compact('dataProvider', 'authorizedCompany'));
+    }
+
+    /**
+     * Displays job searching page.
+     *
+     * @return mixed
+     */
+    public function actionSearch($needle = null)
+    {
+        $dataProvider = new ActiveDataProvider([
+            'query' => Job::getAllJobsWithCompanies($needle)
+        ]);
+
+        return $this->render('search', compact('dataProvider'));
     }
 }

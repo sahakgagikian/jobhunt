@@ -57,7 +57,7 @@ Asset::register($this);
 
                                         <ul class="dropdown-menu">
                                             <li><a class="dropdown-item" id="browse-jobs"
-                                                   href="<?= Url::to(['candidates/browse-jobs']) ?>">Ընդհանուր
+                                                   href="<?= Url::to(['announcement/search']) ?>">Ընդհանուր
                                                     որոնում</a>
                                             </li>
                                             <li><a class="dropdown-item" id="browse-categories"

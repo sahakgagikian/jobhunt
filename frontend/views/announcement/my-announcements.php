@@ -2,6 +2,7 @@
 
 /* @var $this yii\web\View */
 /* @var $authorizedCompany User */
+
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 use common\models\User;
@@ -28,27 +29,25 @@ $this->title = $authorizedCompany->username . ' - Իմ հայտարարությ�
 <div id="content">
     <section id="featured" class="section">
         <div class="container">
-            <div class="row">
-                <?= ListView::widget([
-                    'dataProvider' => $dataProvider,
-                    'itemView' => '_announcementItem',
-                    'summary' => false,
-                    'options' => [
-                        'tag' => 'div',
-                        'class' => 'row',
-                    ],
-                    'itemOptions' => [
-                        'tag' => 'div',
-                        'class' => 'col-lg-4 col-md-6 col-xs-12',
-                    ],
-                    'pager' => [
-                        'firstPageLabel' => 'first',
-                        'lastPageLabel' => 'last',
-                        'prevPageLabel' => 'previous',
-                        'nextPageLabel' => 'next',
-                    ],
-                ]) ?>
-            </div>
+            <?= ListView::widget([
+                'dataProvider' => $dataProvider,
+                'itemView' => '_announcementItem',
+                'summary' => false,
+                'options' => [
+                    'tag' => 'div',
+                    'class' => 'row',
+                ],
+                'itemOptions' => [
+                    'tag' => 'div',
+                    'class' => 'col-lg-4 col-md-6 col-xs-12',
+                ],
+                'pager' => [
+                    'firstPageLabel' => 'first',
+                    'lastPageLabel' => 'last',
+                    'prevPageLabel' => 'previous',
+                    'nextPageLabel' => 'next',
+                ],
+            ]) ?>
         </div>
     </section>
 </div>

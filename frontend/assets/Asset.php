@@ -28,6 +28,7 @@ class Asset extends AppAsset
         'js/form-validator.min.js',
         'js/contact-form-script.js',
         'js/main.js',
+        'js/additional.js',
         'js/addons.js',
         'js/custom.js',
         'js/prevent-refresh-on-validation-fail.js',
