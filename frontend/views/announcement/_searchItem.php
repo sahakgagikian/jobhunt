@@ -18,19 +18,16 @@ use yii\helpers\Url;
                 <span class="company-name"><?= $model->company->username ?></span>
             </div>
         </div>
-        <div class="col-lg-2 col-md-2 col-xs-12 text-center">
+        <div class="col-lg-3 col-md-3 col-xs-12 text-center">
             <span class="btn-open"><?= $model['vacancies_count'] ?> ազատ հաստիք</span>
-        </div>
-        <div class="col-lg-2 col-md-2 col-xs-12 text-right">
-            <div class="location">
-                <i class="lni-map-marker"></i> <?= $model['location'] ?>
-            </div>
         </div>
         <div class="col-lg-2 col-md-2 col-xs-12 text-right">
             <span class="btn-full-time"><?= $model['working_hours'] ?>-ժամյա</span>
         </div>
-        <div class="col-lg-2 col-md-2 col-xs-12 text-right">
-            <span class="btn-apply">Մանրամասներ</span>
+        <div class="col-lg-3 col-md-3 col-xs-12 text-right">
+            <div class="location">
+                <i class="lni-map-marker"></i> <?= $model['location'] ?>
+            </div>
         </div>
     </div>
 </a>
