@@ -19,7 +19,7 @@ use yii\helpers\Url;
             </div>
         </div>
         <div class="col-lg-2 col-md-2 col-xs-12 text-center">
-            <span class="btn-open"><?= $model['vacancies_count'] ?> Open Jobs</span>
+            <span class="btn-open"><?= $model['vacancies_count'] ?> ազատ հաստիք</span>
         </div>
         <div class="col-lg-2 col-md-2 col-xs-12 text-right">
             <div class="location">
@@ -27,10 +27,10 @@ use yii\helpers\Url;
             </div>
         </div>
         <div class="col-lg-2 col-md-2 col-xs-12 text-right">
-            <span class="btn-full-time"><?= $model['working_hours'] ?></span>
+            <span class="btn-full-time"><?= $model['working_hours'] ?>-ժամյա</span>
         </div>
         <div class="col-lg-2 col-md-2 col-xs-12 text-right">
-            <span class="btn-apply">Apply Now</span>
+            <span class="btn-apply">Մանրամասներ</span>
         </div>
     </div>
 </a>

@@ -29,11 +29,11 @@ class AnnouncementController extends Controller
                 'class' => AccessControl::class,
                 'rules' => [
                     [
-                        'actions' => ['login', 'error', 'search'],
+                        'actions' => ['login', 'error', 'view', 'search'],
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['add', 'update', 'delete', 'view', 'my-announcements'],
+                        'actions' => ['add', 'update', 'delete', 'my-announcements'],
                         'allow' => true,
                         'roles' => ['@'],
                         'matchCallback' => function ($rule, $action) {
@@ -158,7 +158,7 @@ class AnnouncementController extends Controller
         $currentUser = Yii::$app->getUser()->identity;
         $currentJob = Job::find()->where(['id' => $id])->one();
 
-        if (!$currentJob || $currentJob->company->id !== $currentUser->id) {
+        if (!$currentJob) {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
 

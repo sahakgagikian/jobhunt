@@ -15,7 +15,7 @@ $this->title = 'Browse jobs';
         <div class="row">
             <div class="col-lg-12">
                 <div class="inner-header">
-                    <h3>Browse Job</h3>
+                    <h3>Որոնել աշխատանք</h3>
                 </div>
             </div>
         </div>
