@@ -49,21 +49,10 @@ Asset::register($this);
                         <ul class="navbar-nav mr-auto w-100 justify-content-end">
                             <?php if (!(Yii::$app->user->isGuest)): ?>
                                 <?php if (Yii::$app->user->identity->role == User::ROLE_CANDIDATE): ?>
-                                    <li class="nav-item dropdown" id="job">
-                                        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"
-                                           aria-haspopup="true" aria-expanded="false">
+                                    <li class="nav-item" id="job">
+                                        <a class="nav-link" href="<?= Url::to(['announcement/search']) ?>">
                                             Աշխատանք
                                         </a>
-
-                                        <ul class="dropdown-menu">
-                                            <li><a class="dropdown-item" id="browse-jobs"
-                                                   href="<?= Url::to(['announcement/search']) ?>">Ընդհանուր
-                                                    որոնում</a>
-                                            </li>
-                                            <li><a class="dropdown-item" id="browse-categories"
-                                                   href="<?= Url::to(['candidates/browse-categories']) ?>">Որոնում ըստ
-                                                    կատեգորիաների</a></li>
-                                        </ul>
                                     </li>
                                     <li class="nav-item dropdown" id="resume">
                                         <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"

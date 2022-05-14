@@ -185,13 +185,20 @@ class AnnouncementController extends Controller
     /**
      * Displays job searching page.
      *
+     * @param int|null $categoryId
      * @param null $needle
      * @return string
      */
-    public function actionSearch($needle = null): string
+    public function actionSearch(int $categoryId = null, $needle = null): string
     {
+        if ($categoryId === null) {
+            $categoryId = 0;
+        }
+
+        $query = $categoryId !== 0 ? Category::getJobsWithCompanies($categoryId, $needle) : Job::getAllJobsWithCompanies($needle);
+
         $dataProvider = new ActiveDataProvider([
-            'query' => Job::getAllJobsWithCompanies($needle),
+            'query' => $query,
             'pagination' => [
                 'pageSize' => 10,
             ],
