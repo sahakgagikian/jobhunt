@@ -27,22 +27,24 @@ $this->title = $currentJob->title;
 </div>
 <!-- Page Header End -->
 
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
-            <?= Html::a('Խմբագրել', ['update', 'id' => $currentJob->id], ['class' => 'btn btn-primary m-1 p-2']) ?>
-        </div>
-        <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
-            <?= Html::a('Հեռացնել', ['delete', 'id' => $currentJob->id], [
-                'class' => 'btn btn-danger m-1 p-2',
-                'data' => [
-                    'confirm' => 'Վստա՞հ եք, որ ուզում եք հեռացնել այս հայտարարությունը։',
-                    'method' => 'post',
-                ],
-            ]) ?>
+<?php if ($currentJob->company->id == $currentUser->id): ?>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+                <?= Html::a('Խմբագրել', ['update', 'id' => $currentJob->id], ['class' => 'btn btn-primary m-1 p-2']) ?>
+            </div>
+            <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+                <?= Html::a('Հեռացնել', ['delete', 'id' => $currentJob->id], [
+                    'class' => 'btn btn-danger m-1 p-2',
+                    'data' => [
+                        'confirm' => 'Վստա՞հ եք, որ ուզում եք հեռացնել այս հայտարարությունը։',
+                        'method' => 'post',
+                    ],
+                ]) ?>
+            </div>
         </div>
     </div>
-</div>
+<?php endif; ?>
 
 <!-- Start Content -->
 <div id="content">

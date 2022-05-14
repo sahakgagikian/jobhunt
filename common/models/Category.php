@@ -117,4 +117,18 @@ class Category extends ActiveRecord
     {
         return $this->getJobs()->count();
     }
+
+    public static function getJobsWithCompanies($id, $needle = null): ActiveQuery
+    {
+        $categoryModel = self::findOne(['id' => $id]);
+        $query = $categoryModel->getJobs()->with(['company']);
+
+        if ($needle) {
+            $query->where(['LIKE', 'title', $needle]);
+        }
+
+        $query->orderBy(['id' => SORT_DESC]);
+
+        return $query;
+    }
 }

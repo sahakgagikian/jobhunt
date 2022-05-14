@@ -109,4 +109,17 @@ class Job extends ActiveRecord
     {
         return $this->hasOne(User::class, ['id' => 'company_id']);
     }
+
+    public static function getAllJobsWithCompanies($needle = null): ActiveQuery
+    {
+        $query = self::find()->with(['company']);
+
+        if ($needle) {
+            $query->where(['LIKE', 'title', $needle]);
+        }
+
+        $query->orderBy(['id' => SORT_DESC]);
+
+        return $query;
+    }
 }
