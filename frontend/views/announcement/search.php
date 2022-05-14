@@ -51,24 +51,30 @@ $this->title = 'Browse jobs';
                         'class' => 'col-12',
                     ],
                     'pager' => [
-                        'firstPageLabel' => 'first',
-                        'lastPageLabel' => 'last',
-                        'prevPageLabel' => 'previous',
-                        'nextPageLabel' => 'next',
+                        'firstPageLabel' => '«',
+                        'lastPageLabel' => '»',
+                        'prevPageLabel' => '<',
+                        'nextPageLabel' => '>',
+                        'maxButtonCount' => 3,
+                        
+                        'options' => [
+                            'class' => 'pager-wrapper',
+                            'id' => 'pager-container',
+                        ],
+
+                        // Customizing CSS class for pager link
+                        'linkOptions' => ['class' => 'pager-link'],
+                        'activePageCssClass' => 'pager-active',
+                        'disabledPageCssClass' => 'pager-disable',
+
+                        // Customizing CSS class for navigating link
+                        'prevPageCssClass' => 'pager-prev',
+                        'nextPageCssClass' => 'pager-next',
+                        'firstPageCssClass' => 'pager-first',
+                        'lastPageCssClass' => 'pager-last',
                     ],
                 ]) ?>
 
-                <!-- Start Pagination -->
-                <ul class="pagination">
-                    <li class="active"><a href="#" class="btn-prev"><i class="lni-angle-left"></i> prev</a></li>
-                    <li><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li class="active"><a href="#" class="btn-next">Next <i class="lni-angle-right"></i></a></li>
-                </ul>
-                <!-- End Pagination -->
             </div>
         </div>
     </div>

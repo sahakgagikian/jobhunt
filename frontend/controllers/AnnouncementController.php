@@ -185,12 +185,16 @@ class AnnouncementController extends Controller
     /**
      * Displays job searching page.
      *
-     * @return mixed
+     * @param null $needle
+     * @return string
      */
-    public function actionSearch($needle = null)
+    public function actionSearch($needle = null): string
     {
         $dataProvider = new ActiveDataProvider([
-            'query' => Job::getAllJobsWithCompanies($needle)
+            'query' => Job::getAllJobsWithCompanies($needle),
+            'pagination' => [
+                'pageSize' => 10,
+            ],
         ]);
 
         return $this->render('search', compact('dataProvider'));
