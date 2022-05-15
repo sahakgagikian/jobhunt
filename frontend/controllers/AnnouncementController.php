@@ -2,6 +2,7 @@
 
 namespace frontend\controllers;
 
+use common\models\Application;
 use common\models\Category;
 use common\models\Job;
 use common\models\JobCategory;
@@ -38,6 +39,14 @@ class AnnouncementController extends Controller
                         'roles' => ['@'],
                         'matchCallback' => function ($rule, $action) {
                             return Yii::$app->user->getIdentity()->role === User::ROLE_COMPANY;
+                        }
+                    ],
+                    [
+                        'actions' => ['apply', 'application-result'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                        'matchCallback' => function ($rule, $action) {
+                            return Yii::$app->user->getIdentity()->role === User::ROLE_CANDIDATE;
                         }
                     ],
                 ],
@@ -205,5 +214,42 @@ class AnnouncementController extends Controller
         ]);
 
         return $this->render('search', compact('dataProvider'));
+    }
+
+    /**
+     * @throws NotFoundHttpException
+     */
+    public function actionApply($id): Response|string
+    {
+        $candidate = Yii::$app->user->identity;
+        $candidateResumes = $candidate->candidateResumes;
+        $jobToApply = Job::findJobModel($id);
+
+        $applicationModel = new Application();
+        $applicationModel->candidate_id = $candidate->id;
+        $applicationModel->job_id = $jobToApply->id;
+        $applicationModel->company_id = $jobToApply->company_id;
+
+        $message = '';
+
+        if ($this->request->isPost) {
+            if ($applicationModel->load(Yii::$app->request->post()) && $applicationModel->save()) {
+                Yii::$app->session->setFlash('success', 'Դուք հաջողությամբ դիմել եք այս աշխատանքի համար։');
+            }
+
+            if ($applicationModel->hasErrors()) {
+                $message = $applicationModel->getFirstError('candidate_id');
+                Yii::$app->session->setFlash('error', $message);
+            }
+
+            return $this->redirect(['application-result']);
+        }
+
+        return $this->render('apply', compact('applicationModel', 'candidateResumes'));
+    }
+
+    public function actionApplicationResult(): string
+    {
+        return $this->render('application-result');
     }
 }

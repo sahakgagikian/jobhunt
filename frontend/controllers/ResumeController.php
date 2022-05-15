@@ -36,23 +36,14 @@ class ResumeController extends Controller
                 'class' => AccessControl::class,
                 'rules' => [
                     [
-                        'actions' => ['login', 'error'],
+                        'actions' => ['login', 'error', 'view'],
                         'allow' => true,
-                    ],
-                    [
-                        'actions' => ['view'],
-                        'allow' => true,
-                        'roles' => ['@'],
-                        'matchCallback' => function ($rule, $action) {
-                            return Yii::$app->user->getIdentity()->role === User::ROLE_COMPANY;
-                        }
                     ],
                     [
                         'actions' => [
                             'create',
                             'update',
                             'delete',
-                            'view',
                             'view-all',
                             'add-education-form',
                             'add-experience-form',
@@ -229,11 +220,12 @@ class ResumeController extends Controller
     {
         /* @var Resume $currentResume */
         $currentResume = Resume::getResume($id);
+        $currentUser = Yii::$app->user->identity;
 
         if (!$currentResume) {
             throw new ForbiddenHttpException('The requested page does not exist.');
         }
 
-        return $this->render('view', compact('currentResume'));
+        return $this->render('view', compact('currentUser', 'currentResume'));
     }
 }

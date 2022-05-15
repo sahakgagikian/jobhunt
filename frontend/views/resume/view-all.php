@@ -35,7 +35,7 @@ $this->title = Yii::$app->user->identity->username . ' - Իմ ռեզյումեն
                             <div class="manager-content">
                                 <div class="manager-info">
                                     <div class="manager-name">
-                                        <h4><a href="<?= Url::to(['candidates/view-resume/' . $resume->id]) ?>"><?= $resume->candidate_name ?></a></h4>
+                                        <h4><a href="<?= Url::to(['resume/view/' . $resume->id]) ?>"><?= $resume->candidate_name ?></a></h4>
                                         <h5><?= $resume->candidate_profession_title ?></h5>
                                     </div>
                                     <div class="manager-meta">

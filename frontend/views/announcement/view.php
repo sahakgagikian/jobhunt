@@ -6,9 +6,9 @@
 
 use common\models\Job;
 use common\models\User;
-use yii\helpers\Html;
 use yii\helpers\Url;
-use yii\widgets\DetailView;
+
+$this->params['breadcrumbs'][] = ['url' => ['view', 'id' => $currentJob->id]];
 
 $this->title = $currentJob->title;
 ?>
@@ -17,9 +17,24 @@ $this->title = $currentJob->title;
 <div class="page-header">
     <div class="container">
         <div class="row">
-            <div class="col-lg-12">
-                <div class="inner-header">
-                    <h3><?= $currentJob->title ?></h3>
+            <div class="col-lg-8 col-md-6 col-xs-12">
+                <div class="breadcrumb-wrapper">
+                    <div class="img-wrapper">
+                        <img src="<?= $currentJob->company->avatarUrl ?>" style="width: 70px; height: 70px" alt="">
+                    </div>
+                    <div class="content">
+                        <h3 class="product-title"><?= $currentJob->title ?></h3>
+                        <p class="brand"><?= $currentJob->company->username ?></p>
+                        <div class="tags">
+                            <span><i class="lni-map-marker"></i><?= $currentJob->location ?></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-xs-12">
+                <div class="month-price">
+                    <span class="year">Աշխատավարձը սկսած</span>
+                    <div class="price"><?= $currentJob->min_salary ?></div>
                 </div>
             </div>
         </div>
@@ -27,55 +42,18 @@ $this->title = $currentJob->title;
 </div>
 <!-- Page Header End -->
 
-<?php if ($currentJob->company->id == $currentUser->id): ?>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
-                <?= Html::a('Խմբագրել', ['update', 'id' => $currentJob->id], ['class' => 'btn btn-primary m-1 p-2']) ?>
-            </div>
-            <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
-                <?= Html::a('Հեռացնել', ['delete', 'id' => $currentJob->id], [
-                    'class' => 'btn btn-danger m-1 p-2',
-                    'data' => [
-                        'confirm' => 'Վստա՞հ եք, որ ուզում եք հեռացնել այս հայտարարությունը։',
-                        'method' => 'post',
-                    ],
-                ]) ?>
-            </div>
-        </div>
-    </div>
-<?php endif; ?>
-
-<!-- Start Content -->
-<div id="content">
-    <div class="container-fluid">
-        <div class="row">
+<!-- Job Detail Section Start -->
+<section class="job-detail section">
+    <div class="container">
+        <div class="row justify-content-between">
             <div class="col-12">
-                <?= DetailView::widget([
-                    'model' => $currentJob,
-                    'attributes' => [
-                        'title',
-                        'location',
-                        'working_hours',
-                        'vacancies_count',
-                        'min_salary',
-                        'max_salary',
-                        'description'
-                    ],
-                ])
-                ?>
-                <!--<div class="job-alerts-item candidates">
-                    <div class="col-lg-12 col-md-6 col-xs-12">
-                        <div class="manager-resumes-item">
-                            <div class="manager-content">
-                                <a href="<?/*= Url::to(['company/view-resume/' . $currentJob->id]) */?>">
-                                    <div style="text-align: center; font-size: 20px">View resume</div></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>-->
+                <div class="content-area">
+                    <h4>Նկարագրություն</h4>
+                    <p><?= $currentJob->description ?></p>
+                    <a href="<?= Url::to(['announcement/apply/' . $currentJob->id]) ?>" class="btn btn-common">Ուղարկել դիմում</a>
+                </div>
             </div>
         </div>
     </div>
-</div>
-<!-- End Content -->
+</section>
+<!-- Job Detail Section End -->
