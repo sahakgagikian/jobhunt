@@ -94,19 +94,10 @@ Asset::register($this);
                                         </ul>
                                     </li>
 
-                                    <li class="nav-item dropdown" id="candidates">
-                                        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"
-                                           aria-haspopup="true" aria-expanded="false">
-                                            Թեկնածուներ
+                                    <li class="nav-item" id="contact">
+                                        <a class="nav-link" href="<?= Url::to(['application/manage']) ?>">
+                                            Ստացված դիմումներ
                                         </a>
-
-                                        <ul class="dropdown-menu">
-                                            <li><a class="dropdown-item" id="manage-applications"
-                                                   href="<?= Url::to(['application/my-announcements']) ?>">Ստացված
-                                                    դիմումներ</a></li>
-                                            <li><a class="dropdown-item" id="browse-resumes"
-                                                   href="<?= Url::to(['resume/browse-resumes']) ?>">Ռեզյումեներ</a></li>
-                                        </ul>
                                     </li>
                                 <?php endif; ?>
                             <?php endif; ?>

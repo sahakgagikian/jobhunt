@@ -90,7 +90,8 @@ class Resume extends ActiveRecord
         /* @var Resume $currentResume */
 
         $currentUser = Yii::$app->getUser()->identity;
-        $viewAllowed = in_array($id, $currentUser->resumeIds);
+        $resumeIds = $currentUser->role == User::ROLE_CANDIDATE ? $currentUser->resumeIds : $currentUser->receivedResumeIds;
+        $viewAllowed = in_array($id, $resumeIds);
 
         if (!$viewAllowed) {
             return false;

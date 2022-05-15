@@ -7,6 +7,7 @@ use JetBrains\PhpStorm\Pure;
 use Yii;
 use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
+use yii\web\NotFoundHttpException;
 
 /**
  * This is the model class for table "job".
@@ -78,6 +79,19 @@ class Job extends ActiveRecord
             'description' => 'Նկարագրություն'
         ];
     }
+
+    /**
+     * @throws NotFoundHttpException
+     */
+    public static function findJobModel($id): ?Job
+    {
+        if (($model = Job::findOne($id)) !== null) {
+            return $model;
+        }
+
+        throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
 
     /**
      * Gets query for [[JobsByCategory]].

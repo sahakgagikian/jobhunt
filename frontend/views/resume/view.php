@@ -1,10 +1,11 @@
 <?php
 
 /* @var $this yii\web\View */
+/* @var $currentUser Resume */
 /* @var $currentResume Resume */
 
 use common\models\Resume;
-use yii\helpers\Html;
+use common\models\User;use yii\helpers\Html;
 
 $this->title = 'Ռեզյումե - ' . $currentResume->candidate_name;
 ?>
@@ -23,22 +24,24 @@ $this->title = 'Ռեզյումե - ' . $currentResume->candidate_name;
 </div>
 <!-- Page Header End -->
 
-<div class="container">
-    <div class="row">
-        <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
-            <?= Html::a('Խմբագրել', ['update', 'id' => $currentResume->id], ['class' => 'btn btn-primary m-1 p-2']) ?>
-        </div>
-        <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
-            <?= Html::a('Հեռացնել', ['delete', 'id' => $currentResume->id], [
-                'class' => 'btn btn-danger m-1 p-2',
-                'data' => [
-                    'confirm' => 'Վստա՞հ եք, որ ուզում եք հեռացնել այս ռեզյումեն։',
-                    'method' => 'post',
-                ],
-            ]) ?>
+<?php if ($currentUser->role == User::ROLE_CANDIDATE): ?>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+                <?= Html::a('Խմբագրել', ['update', 'id' => $currentResume->id], ['class' => 'btn btn-primary m-1 p-2']) ?>
+            </div>
+            <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+                <?= Html::a('Հեռացնել', ['delete', 'id' => $currentResume->id], [
+                    'class' => 'btn btn-danger m-1 p-2',
+                    'data' => [
+                        'confirm' => 'Վստա՞հ եք, որ ուզում եք հեռացնել այս ռեզյումեն։',
+                        'method' => 'post',
+                    ],
+                ]) ?>
+            </div>
         </div>
     </div>
-</div>
+<?php endif; ?>
 
 <!-- Start Content -->
 <div id="content">
