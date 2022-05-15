@@ -102,7 +102,7 @@ Asset::register($this);
                                 <?php endif; ?>
                             <?php endif; ?>
                             <li class="nav-item" id="contact">
-                                <a class="nav-link" href="<?= Url::to(['contact/contact']) ?>">
+                                <a class="nav-link" href="#">
                                     Կապ
                                 </a>
                             </li>
@@ -162,28 +162,28 @@ Asset::register($this);
                     </div>
                     <div class="col-lg-6 col-md-4 col-xs-12">
                         <div class="widget">
-                            <h3 class="block-title">Quick Links</h3>
+                            <h3 class="block-title">Արագ հղումներ</h3>
                             <ul class="menu">
-                                <li><a href="#">About Us</a></li>
-                                <li><a href="#">Support</a></li>
-                                <li><a href="#">License</a></li>
-                                <li><a href="#">Contact</a></li>
+                                <li><a href="#">Մեր մասին</a></li>
+                                <li><a href="#">Աջակցություն</a></li>
+                                <li><a href="#">Լիցենզիա</a></li>
+                                <li><a href="#">Կապ</a></li>
                             </ul>
                             <ul class="menu">
-                                <li><a href="#">Terms & Conditions</a></li>
-                                <li><a href="#">Privacy</a></li>
-                                <li><a href="#">Refferal Terms</a></li>
-                                <li><a href="#">Product License</a></li>
+                                <li><a href="#">Պայմաններ</a></li>
+                                <li><a href="#">Գաղտնիություն</a></li>
+                                <li><a href="#">Ուղորդման պայմաններ</a></li>
+                                <li><a href="#">արտադրանքի լիցենզիա</a></li>
                             </ul>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-4 col-xs-12">
                         <div class="widget">
-                            <h3 class="block-title">Subscribe Now</h3>
+                            <h3 class="block-title">Գրանցվի՛ր հիմա</h3>
                             <p>Sed consequat sapien faus quam bibendum convallis.</p>
                             <form method="post" id="subscribe-form" name="subscribe-form" class="validate">
                                 <div class="form-group is-empty">
-                                    <input type="email" value="" name="Email" class="form-control" id="EMAIL" placeholder="Enter Email..."
+                                    <input type="email" value="" name="Email" class="form-control" id="EMAIL" placeholder="Ձեր էլ․փոստը..."
                                            required="">
                                     <button type="submit" name="subscribe" id="subscribes" class="btn btn-common sub-btn"><i class="lni-envelope"></i>
                                     </button>
