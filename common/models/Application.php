@@ -16,6 +16,7 @@ use yii\db\ActiveRecord;
  * @property int $company_id
  *
  * @property Job $job
+ * @property User $candidate
  * @property Resume $resume
  */
 class Application extends ActiveRecord

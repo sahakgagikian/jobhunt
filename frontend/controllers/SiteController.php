@@ -2,6 +2,7 @@
 
 namespace frontend\controllers;
 
+use common\models\Category;
 use common\models\User;
 use DateTimeZone;
 use frontend\models\ResendVerificationEmailForm;
@@ -82,7 +83,10 @@ class SiteController extends Controller
      */
     public function actionIndex(): string
     {
-        return $this->render('index');
+        $user = Yii::$app->user;
+        $categoryIds = Category::getAllCategoryIds();
+
+        return $this->render('index', compact('user', 'categoryIds'));
     }
 
     /**
