@@ -8,7 +8,7 @@ use common\models\Resume;
 use yii\base\Application;
 use yii\helpers\Url;
 
-$this->title = $currentApplication->candidate->username . ' - View application';
+$this->title = $currentApplication->candidate->username . ' - Դիմում';
 ?>
 
 <!-- Page Header Start -->
@@ -35,7 +35,7 @@ $this->title = $currentApplication->candidate->username . ' - View application';
                         <div class="manager-resumes-item">
                             <div class="manager-content">
                                 <a href="<?= Url::to(['resume/view/' . $currentResume->id]) ?>">
-                                    <div style="text-align: center; font-size: 20px">View resume</div></a>
+                                    <div style="text-align: center; font-size: 20px">Տեսնել ռեզյումեն</div></a>
                             </div>
                         </div>
                     </div>
